@@ -30,7 +30,8 @@ public class addCreditServlet extends HttpServlet {
     
         User f = (User) request.getSession().getAttribute("user");
         
-int credit = 0;        
+int credit = 0;  
+try{
 String creditx = request.getParameter("credit");
         
         if(creditx.equals("")){
@@ -55,6 +56,11 @@ String creditx = request.getParameter("credit");
             request.getRequestDispatcher("MyPage.jsp").forward(request, response);
         
         }
+}catch(Exception e){
+    request.setAttribute("message", "You must enter a number that is above 0 to add credits to your account. AND MAX 10.000");
+    request.getRequestDispatcher("MyPage.jsp").forward(request, response);
+}
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
