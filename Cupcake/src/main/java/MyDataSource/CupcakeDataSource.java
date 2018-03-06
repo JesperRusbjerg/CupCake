@@ -24,15 +24,6 @@ public class CupcakeDataSource
         dataSource.setDatabaseName("cupcakes");
     }
     
-     public CupcakeDataSource(boolean admin)
-    {
-        
-    }
-     
-    
-    
-    
-
     public MysqlDataSource getDataSource()
     {
         return dataSource;
