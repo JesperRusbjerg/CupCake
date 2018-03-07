@@ -24,6 +24,4 @@ int price;
         return price;
     }
 
-
-    
 }
