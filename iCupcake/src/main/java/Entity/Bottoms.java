@@ -7,6 +7,7 @@ public class Bottoms {
 String name;
 int price;
 // rettelse eksempel
+// merge eksempelfejl rasmus
 
     public Bottoms(String name, int price) {
         this.name = name;
