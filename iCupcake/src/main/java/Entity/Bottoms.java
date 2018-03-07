@@ -6,6 +6,7 @@ public class Bottoms {
 
 String name;
 int price;
+// rettelse eksempel
 
     public Bottoms(String name, int price) {
         this.name = name;
