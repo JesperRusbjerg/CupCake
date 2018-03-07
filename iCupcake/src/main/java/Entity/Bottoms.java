@@ -6,7 +6,8 @@ public class Bottoms {
 
 String name;
 int price;
-// rettelse eksempel
+// rettelse eksempel 
+// merge eksempel mette
 
     public Bottoms(String name, int price) {
         this.name = name;
