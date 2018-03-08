@@ -32,6 +32,9 @@ public class AdminShowOrderServlet extends HttpServlet {
         
                 DAOCupcake x =  new DAOCupcake(new CupcakeDataSource().getDataSource());
                 
+                
+                
+                
                 List<Order> o = x.AllOrders();
                 request.setAttribute("orders", o);
              request.getRequestDispatcher("AdminShowOrders.jsp").forward(request, response);
