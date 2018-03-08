@@ -63,9 +63,9 @@ public class LoginServlet extends HttpServlet {
          
         if(f != null && !f.isAdmin()){
             
-            if(request.getSession().getAttribute("cartlist") != null){
-                request.getSession().removeAttribute("cartlist");
-            }
+//            if(request.getSession().getAttribute("cartlist") != null){
+//                request.getSession().removeAttribute("cartlist");
+//            }
             
 //                HttpSession session = request.getSession();
 //                session.setAttribute("name", emailAddress);
@@ -76,9 +76,9 @@ public class LoginServlet extends HttpServlet {
         }
         else if(f != null && f.isAdmin()){
             
-            if(request.getSession().getAttribute("cartlist") != null){
-                request.getSession().removeAttribute("cartlist");
-            }
+//            if(request.getSession().getAttribute("cartlist") != null){
+//                request.getSession().removeAttribute("cartlist");
+//            }
                 
 //                request.getSession().setAttribute("name", emailAddress);
 //                request.getSession().setAttribute("credit", f.getCredit());
