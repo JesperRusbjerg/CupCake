@@ -104,20 +104,20 @@
                                 </tr>
                             </thead> 
                             <tbody>
-                                <tr>
+                                
                             <%
                             List<CupCake> b = (List<CupCake>) x.OrderDetailsUser(orderID);
                             for (CupCake elem : b) {
                     %>
                             
-                                
+                                <tr>
                                     <th> <% out.print(elem.getBottom()); %> </th>
                                     <th>  <% out.print(elem.getTop()); %> </th>
                                     <th>  <% out.print(elem.getAmount()); %> </th>
                                     <th> <% out.print(elem.getPrice()); %>  </th>
- </tr>
+
                                     <% }%>
-                               
+                                </tr> 
                             </tbody>
                         </table>    
 
