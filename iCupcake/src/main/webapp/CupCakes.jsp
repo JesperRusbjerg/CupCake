@@ -21,39 +21,32 @@
 
         <div class="container-fluid">
             <div class="row">
-                <div class="col-md-12">
-                    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                        <a class="navbar-brand" href="index.html"><img id="regdiv3" src="logo2.png" alt="logo"></a>
-                        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <span class="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul class="navbar-nav mr-auto">
-                                <li class="nav-item active">
-                                    <a class="nav-link" href="CupCakeServlet">Shop <span class="sr-only">(current)</span></a>
-                                </li>
-                                <% if (request.getSession().getAttribute("user") != null) {%>
-                                <li class="nav-item active">
-                                    <a class="nav-link" href="MyPage.jsp">My Page <span class="sr-only">(current)</span></a>
-                                </li>
-                                <li class="nav-item active">
-                                    <a class="nav-link" href ="LogoutServlet">Log Out <span class="sr-only">(current)</span></a>
-                                </li> <%}
-                                else { %>  <li class="nav-item active">
-                                    <a class="nav-link" href="Login.jsp">Log in <span class="sr-only">(current)</span></a>
-                                </li> <%} %>
-                            </ul>
-                        </div>
-                    </nav>
-                </div>
+                <nav class="navbar navbar-expand-lg navbar-light bg-light">
+                    <a class="navbar-brand" href="index.html"><img id="regdiv3" src="logo2.png" alt="logo"></a>
+                    <ul class="navbar-nav mr-auto">
+                        <li class="nav-item active">
+                            <a class="nav-link" href="CupCakeServlet">Shop <span class="sr-only">(current)</span></a>
+                        </li>
+                        <% if (request.getSession().getAttribute("user") != null) {%>
+                        <li class="nav-item active">
+                            <a class="nav-link" href="MyPage.jsp">My Page <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item active">
+                            <a class="nav-link" href ="LogoutServlet">Log Out <span class="sr-only">(current)</span></a>
+                        </li> <%}
+                        else { %>  <li class="nav-item active">
+                            <a class="nav-link" href="Login.jsp">Log in <span class="sr-only">(current)</span></a>
+                        </li> <%} %>
+                    </ul>
+                </nav>
             </div>
 
             <div class="row">
                 <div class="col-md-6">
                     <div class="main">
                         <h1 class="display-4">Cupcake page!</h1>
-                        ${message} <br>
-                        <p>Each topping is added together and a final price will be shown in your shopping cart.</p>
+                        <p class="lead">${message}</p>
+                        <p class="lead">Each topping is added together and a final price will be shown in your shopping cart.</p>
                     </div>
                     <br>
                     <form action="CartServlet" method="post">
@@ -85,77 +78,74 @@
                         </div>
 
                     </form>
-                    <div class="main">
-                        <%
-                            if (request.getSession().getAttribute("user") != null) {
-                                User v = (User) request.getSession().getAttribute("user");
-                        %>
-                        <p class="lead"> Logged in as : <% out.print(v.getName());  %>
-                        <p class="lead"> Credits: <% out.print(v.getCredit()); %>      
-                            <%}%>
-                    </div>
+                    <%
+                        if (request.getSession().getAttribute("user") != null) {
+                            User v = (User) request.getSession().getAttribute("user");
+                    %>
+                    <p class="lead"> Logged in as : <% out.print(v.getName());  %>
+                    <p class="lead"> Credits: <% out.print(v.getCredit()); %>      
+                        <%}%>
                 </div>
 
-                    <div class="col-sm-6">
-                            <%if (request.getSession().getAttribute("cartlist") == null) { %>
-                <h1 class="display-4">Shopping Cart:</h1>
-                <p class="lead">There are no items added yet!</p>
+                <div class="col-md-6">
+                    <div class="main">
+                        <%if (request.getSession().getAttribute("cartlist") == null) { %>
+                        <h1 class="display-4">Shopping Cart:</h1>
+                        <p class="lead">There are no items added yet!</p>
 
 
-                <% }
-                    else {%>
-
-
-
-                <h1 class="display-4">This is your current shoppingcart</h1>
-                <hr class="my-4">
-
-                <c:forEach var="cupcake" items="${cartlist}">
-                    <p class="lead">Amount: ${cupcake.amount} - Bottom: ${cupcake.bottom} + Top: ${cupcake.top} Price: - ${cupcake.price} kr</p> 
-                </c:forEach>
-
-
-                <%     int totalprice = 0;
-                    for (CupCake elem : (List<CupCake>) request.getSession().getAttribute("cartlist")) {
-                        totalprice = totalprice + elem.getPrice();
-                    }
-                %>
-                <hr class="my-4">
-                <p class="lead font-weight-bold"> Total Price: <% out.print(totalprice); %> </p>
-
-
-
-
-                <%
-                    if (request.getSession().getAttribute("user") != null) {
-                        User v = (User) request.getSession().getAttribute("user");
-                %>
-
-                <% if (v.getCredit() >= totalprice) { %>  
-                <p>Placing the order will minus your accouts credits by: <% out.print(totalprice); %> </p>
-                <p> As soon as you press the button, your CupCakes will be ready for pickup</p>
-                <p> You will be able to see your order History under "My Page" </p>
-                <form action="PlaceOrderServlet">
-                    <br>  <input type="submit" value="Place order!"/> 
-                </form>
-
-                <form action="ClearBasketServlet">
-                    <input type="submit" value="Clear Basket!"/>
-                </form>
-
-
-                <%}
-                    else {%>
-                <p> Your order costs: <% out.print(totalprice); %> . Your account only has <% out.print(v.getCredit()); %> amount of credit.<br> You can add more credit under "My Page"<%}%>
-                <p> Logged in as : <% out.print(v.getName());  %>
-                <p> Credits: <% out.print(v.getCredit()); %>      
-                    <%}
+                        <% }
                         else {%>
-                <p class="alert alert-danger">You are currently not logged in. You must log in to place an order. </p>
-                <%}
+
+
+                        <h1 class="display-4">This is your current shoppingcart</h1>
+                    </div>
+                    <hr class="my-4">
+
+                    <c:forEach var="cupcake" items="${cartlist}">
+                        <p class="lead">Amount: ${cupcake.amount} - Bottom: ${cupcake.bottom} + Top: ${cupcake.top} Price: - ${cupcake.price} kr</p> 
+                    </c:forEach>
+
+
+                    <%     int totalprice = 0;
+                        for (CupCake elem : (List<CupCake>) request.getSession().getAttribute("cartlist")) {
+                            totalprice = totalprice + elem.getPrice();
+                        }
+                    %>
+                    <hr class="my-4">
+                    <p class="lead font-weight-bold"> Total Price: <% out.print(totalprice); %> </p>
+
+
+
+
+                    <%
+                        if (request.getSession().getAttribute("user") != null) {
+                            User v = (User) request.getSession().getAttribute("user");
+                    %>
+
+                    <% if (v.getCredit() >= totalprice) { %>  
+                    <p>Placing the order will minus your accouts credits by: <% out.print(totalprice); %> </p>
+                    <p> As soon as you press the button, your CupCakes will be ready for pickup</p>
+                    <p> You will be able to see your order History under "My Page" </p>
+                    <form action="PlaceOrderServlet">
+                        <br>  <input type="submit" value="Place order!"/> 
+                    </form>
+
+                    <form action="ClearBasketServlet">
+                        <input type="submit" value="Clear Basket!"/>
+                    </form>
+
+
+                    <%}
+                    else {%>
+                    <p> Your order costs: <% out.print(totalprice); %> . Your account only has <% out.print(v.getCredit()); %> amount of credit.<br> You can add more credit under "My Page"<%}%>
+                        <%}
+                        else {%>
+                    <p class="alert alert-danger">You are currently not logged in. You must log in to place an order. </p>
+                    <%}
                         }%>
+                </div>
             </div>
         </div>
-    </div>
-</body>
+    </body>
 </html>
