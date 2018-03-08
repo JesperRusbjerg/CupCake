@@ -19,35 +19,14 @@
     </head>
     <body>
 
+        <%@include file="Include/MyNavbar.jsp" %>
+
         <div class="container-fluid">
             <div class="row">
-                <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                    <a class="navbar-brand" href="index.html"><img id="regdiv3" src="logo2.png" alt="logo"></a>
-                    <ul class="navbar-nav mr-auto">
-                        <li class="nav-item active">
-                            <a class="nav-link" href="CupCakeServlet">Shop <span class="sr-only">(current)</span></a>
-                        </li>
-                        <% if (request.getSession().getAttribute("user") != null) {%>
-                        <li class="nav-item active">
-                            <a class="nav-link" href="MyPage.jsp">My Page <span class="sr-only">(current)</span></a>
-                        </li>
-                        <li class="nav-item active">
-                            <a class="nav-link" href ="LogoutServlet">Log Out <span class="sr-only">(current)</span></a>
-                        </li> <%}
-                            else { %>  <li class="nav-item active">
-                            <a class="nav-link" href="Login.jsp">Log in <span class="sr-only">(current)</span></a>
-                        </li> <%} %>
-                    </ul>
-                </nav>
-            </div>
-
-            <div class="row">
                 <div class="col-md-6">
-                    <div class="main">
                         <h1 class="display-4">Cupcake page!</h1>
                         <p class="lead">${message}</p>
                         <p class="lead">Each topping is added together and a final price will be shown in your shopping cart.</p>
-                    </div>
                     <br>
                     <form action="CartServlet" method="post">
                         <div class="form-group">
@@ -88,7 +67,6 @@
                 </div>
 
                 <div class="col-md-6">
-                    <div class="main">
                         <%if (request.getSession().getAttribute("cartlist") == null) { %>
                         <h1 class="display-4">Shopping Cart:</h1>
                         <p class="lead">There are no items added yet!</p>
@@ -99,7 +77,6 @@
 
 
                         <h1 class="display-4">This is your current shoppingcart</h1>
-                    </div>
                     <hr class="my-4">
 
                     <c:forEach var="cupcake" items="${cartlist}">

@@ -1,6 +1,6 @@
 body {margin:0;}
 
-.navbar {
+.navbar1 {
     overflow: hidden;
     background-color: chocolate;
     position: fixed;
@@ -8,7 +8,7 @@ body {margin:0;}
     width: 100%;
 }
 
-.navbar a {
+.navbar1 a {
     float: left;
     display: block;
     color: bisque;
@@ -18,13 +18,13 @@ body {margin:0;}
     font-size: 17px;
 }
 
-.navbar a:hover {
+.navbar1 a:hover {
     background: #ddd;
     color: black;
 }
 
 .main {
-    margin-top: 100px;
+    padding-top: 100px;
 }
 
 /* THIS IS THE STYLING FOR OUR REGISTRATION PAGE*/
