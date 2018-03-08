@@ -15,7 +15,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <link href="Stylesheet.css" rel="stylesheet" type="text/css"/>
-        <title>JSP Page</title>
+        <title>Shop</title>
     </head>
     <body>
 
@@ -34,7 +34,7 @@
                         <li class="nav-item active">
                             <a class="nav-link" href ="LogoutServlet">Log Out <span class="sr-only">(current)</span></a>
                         </li> <%}
-                        else { %>  <li class="nav-item active">
+                            else { %>  <li class="nav-item active">
                             <a class="nav-link" href="Login.jsp">Log in <span class="sr-only">(current)</span></a>
                         </li> <%} %>
                     </ul>
@@ -116,23 +116,21 @@
                     <p class="lead font-weight-bold"> Total Price: <% out.print(totalprice); %> </p>
 
 
-
-
                     <%
                         if (request.getSession().getAttribute("user") != null) {
                             User v = (User) request.getSession().getAttribute("user");
                     %>
 
                     <% if (v.getCredit() >= totalprice) { %>  
-                    <p>Placing the order will minus your accouts credits by: <% out.print(totalprice); %> </p>
-                    <p> As soon as you press the button, your CupCakes will be ready for pickup</p>
-                    <p> You will be able to see your order History under "My Page" </p>
+                    <p class="lead">Placing the order will minus your accouts credits by: <% out.print(totalprice); %> </p>
+                    <p class="lead"> As soon as you press the button, your CupCakes will be ready for pickup</p>
+                    <p class="lead"> You will be able to see your order History under "My Page" </p>
                     <form action="PlaceOrderServlet">
-                        <br>  <input type="submit" value="Place order!"/> 
+                        <br><input type="submit" class="btn btn-primary" value="Place order!"/> 
                     </form>
 
                     <form action="ClearBasketServlet">
-                        <input type="submit" value="Clear Basket!"/>
+                        <br><input type="submit" class="btn btn-primary" value="Clear Basket!"/>
                     </form>
 
 
