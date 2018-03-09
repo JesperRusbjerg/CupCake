@@ -29,7 +29,7 @@ public class LogoutServlet extends HttpServlet {
         if(request.getSession().getAttribute("cartlist") != null){
         request.getSession().removeAttribute("cartlist");
         }
-          request.getRequestDispatcher("index.html").forward(request, response);
+          request.getRequestDispatcher("index.jsp").forward(request, response);
         
         
     }

@@ -46,7 +46,7 @@
 
                                         <input type="hidden" name="orderID" value="<%out.print(elem.getOrderID());%>" />
                                         <input type="hidden" name="totalprice" value="<%out.print(elem.getTotalprice());%>" />
-                                        <input type="submit" value="Order Details"/>
+                                        <input type="submit" class="btn btn-primary" value="Order Details"/><br>
 
                                     </form>
                                 </th>

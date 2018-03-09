@@ -22,27 +22,30 @@
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12">
-                        <h1>Your page:</h1>
-                        <p> In the top of you can use the Menu to navigate through the site! </p>
-                        <p> CupCakes is for ordering CupCakes! </p>
-                        <p> Here "My Page" you can add additional credits! And also see your previous orders! </p>
+                        <h1 class="display-4">Your page:</h1>
+                        <p class="lead"> In the top of you can use the Menu to navigate through the site! </p>
+                        <p class="lead"> CupCakes is for ordering CupCakes! </p>
+                        <p class="lead"> Here "My Page" you can add additional credits! And also see your previous orders! </p>
                         ${message}
-                        <p> Credits: <% out.print(v.getCredit()); %>   </p>
+                        <p class="lead"> Credits: <% out.print(v.getCredit()); %>   </p>
                         <form action="addCreditServlet" method="post">
-                            <br>Credit: <input type="number" name="credit" value="0"/>
-                            <input type="submit" value="Add credits!"/>
+                        <div class="form-group">
+                            <label for="credit">Credit:</label>
+                            <input type="number" class="form-control" id="credit" name="credit" placeholder="Enter credits amount:">
+                            <br>
+                            <input type="submit" class="btn btn-primary" value="Add Credits"/><br>
+                        </div>
                         </form>
                         <br>
                         <form action="ShowOrdersServlet" method="post">
-                            <br><input type="submit" value="Show orders!"/>
+                            <input type="submit" class="btn btn-primary" value="Show Orders"/><br>
                         </form>
                         <br>
-                        <p> Logged in as : <% out.print(v.getName());  %>
+                        <p class="lead"> Logged in as : <% out.print(v.getName());  %>
 
-
-
+                            
                             <%  if (v.isAdmin()) { %>
-                        <p> Admin Page:
+                        <p class="lead"> Admin Page:
                             <a href="Admin.jsp">Admin page:</a><br>
                             <%}%>
                     </div>
