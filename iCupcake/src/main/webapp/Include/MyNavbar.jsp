@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="index.html"><img id="regdiv3" src="logo2.png" alt="logo"></a>
+    <a class="navbar-brand" href="index.jsp"><img id="regdiv3" src="logo2.png" alt="logo"></a>
     <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
             <a class="nav-link" href="CupCakeServlet">Shop <span class="sr-only">(current)</span></a>
