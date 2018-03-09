@@ -23,13 +23,9 @@
                 <div class="row">
                     <div class="col-md-12">
                         <h1>Your page:</h1>
-
-
                         <p> In the top of you can use the Menu to navigate through the site! </p>
                         <p> CupCakes is for ordering CupCakes! </p>
                         <p> Here "My Page" you can add additional credits! And also see your previous orders! </p>
-
-
                         ${message}
                         <p> Credits: <% out.print(v.getCredit()); %>   </p>
                         <form action="addCreditServlet" method="post">
@@ -37,14 +33,10 @@
                             <input type="submit" value="Add credits!"/>
                         </form>
                         <br>
-
                         <form action="ShowOrdersServlet" method="post">
                             <br><input type="submit" value="Show orders!"/>
                         </form>
-
                         <br>
-
-
                         <p> Logged in as : <% out.print(v.getName());  %>
 
 
