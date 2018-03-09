@@ -24,7 +24,7 @@
         <div class="container-fluid">
             <div class="row"> 
                 <div class="col-md-6">
-                    <h1> Your order history: </h1>
+                    <h1 class="display-4"> Your order history: </h1>
                     <table class="table table-striped">
                         <thead>
                             <tr>
