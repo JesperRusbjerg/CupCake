@@ -1,6 +1,7 @@
 package Servlet;
 
 import DataAccessObject.DAOCupcake;
+import DataAccessObject.Handler;
 import Entity.User;
 import MyDataSource.CupcakeDataSource;
 import java.io.IOException;
@@ -25,11 +26,11 @@ public class RegisterServlet extends HttpServlet {
             password = request.getParameter("password");
 
             DAOCupcake dao = new DAOCupcake(new CupcakeDataSource().getDataSource());
-
-            boolean check = dao.checkIfRegisterable(emailAddress, password);
+            Handler handler = new Handler();
+            boolean check = handler.checkIfRegisterable(emailAddress, password);
 
             if (check) {
-                dao.createUser(emailAddress, password, 50);
+                handler.createUser(emailAddress, password, 50);
                 User f = dao.getUser(emailAddress);
                 request.getSession().setAttribute("user", f);
                 request.getRequestDispatcher("MyPage.jsp").forward(request, response);

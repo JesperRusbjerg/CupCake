@@ -1,9 +1,8 @@
 package Servlet;
 
-import DataAccessObject.DAOCupcake;
+import DataAccessObject.Handler;
 import Entity.Bottoms;
 import Entity.Toppings;
-import MyDataSource.CupcakeDataSource;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -19,12 +18,12 @@ public class CupCakeServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        List<Bottoms> b = new DAOCupcake(new CupcakeDataSource().getDataSource()).getAllBottoms();
-        List<Toppings> t = new DAOCupcake(new CupcakeDataSource().getDataSource()).getAllToppings();
+        Handler handler = new Handler();
+        List<Bottoms> listOfBottoms = handler.getAllBottoms();
+        List<Toppings> listOfToppings = handler.getAllToppings();
 
-        request.setAttribute("bottoms", b);
-        request.setAttribute("toppings", t);
-
+        request.setAttribute("bottoms", listOfBottoms);
+        request.setAttribute("toppings", listOfToppings);
         request.getRequestDispatcher("CupCakes.jsp").forward(request, response);
 
     }

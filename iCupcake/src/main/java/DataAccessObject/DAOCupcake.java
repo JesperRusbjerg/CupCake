@@ -135,94 +135,70 @@ public class DAOCupcake {
 
         try {
             dbc.open();
-
             String sql = "select * from bottoms;";
-
             ResultSet resultset = dbc.query(sql);
-
             while (resultset.next()) {
 
                 String name = resultset.getString("b_name");
                 int price = resultset.getInt("b_price");
-
                 Bottoms b = new Bottoms(name, price);
-
                 bottoms.add(b);
             }
             dbc.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-
         return bottoms;
     }
 
     public List<Toppings> getAllToppings() {
         List<Toppings> toppings = new ArrayList();
-
         try {
             dbc.open();
-
             String sql = "select * from toppings;";
-
             ResultSet resultset = dbc.query(sql);
-
             while (resultset.next()) {
-
                 String name = resultset.getString("t_name");
                 int price = resultset.getInt("t_price");
-
                 Toppings t = new Toppings(name, price);
-
                 toppings.add(t);
             }
-
             dbc.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-
         return toppings;
     }
 
     public List<User> getUsers() {
-
-        List<User> a = new ArrayList();
+        List<User> listOfUsers = new ArrayList();
         try {
             dbc.open();
-
             String sql = " select * from users;";
             ResultSet resultset = dbc.query(sql);
-
             while (resultset.next()) {
-
                 String u_email = resultset.getString("u_email");
                 String u_psw = resultset.getString("u_password");
                 int credit = resultset.getInt("u_credit");
                 boolean admin = resultset.getBoolean("admin");
                 int id = resultset.getInt("userID");
-                User x = new User(u_email, u_psw, credit, admin, id);
-                a.add(x);
+                User user = new User(u_email, u_psw, credit, admin, id);
+                listOfUsers.add(user);
             }
-
             dbc.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        return a;
+        return listOfUsers;
     }
 
     public void deleteUser(int userID) {
-
         try {
             dbc.open();
-
             String sql = "delete from users where userID =?;";
             PreparedStatement s = dbc.getConnection().prepareStatement(sql);
             s.setInt(1, userID);
-
             s.executeUpdate();
-
             s.close();
             dbc.close();
         } catch (SQLException ex) {

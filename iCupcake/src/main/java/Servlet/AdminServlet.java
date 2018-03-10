@@ -1,8 +1,7 @@
 package Servlet;
 
-import DataAccessObject.DAOCupcake;
+import DataAccessObject.Handler;
 import Entity.User;
-import MyDataSource.CupcakeDataSource;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -18,21 +17,14 @@ public class AdminServlet extends HttpServlet {
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
-        String check = request.getParameter("userid");
-        if(check != null){
-        int del = Integer.parseInt(request.getParameter("userid"));
-        DAOCupcake dao = new DAOCupcake(new CupcakeDataSource().getDataSource());
-        dao.deleteUser(del);
+        Handler handler = new Handler();
+        String user = request.getParameter("userid");
+        if (user != null) {
+            int deleteID = Integer.parseInt(request.getParameter("userid"));
+            handler.deleteUser(deleteID);
         }
-        
-        
-        
-        List<User> listofuser = new DAOCupcake(new CupcakeDataSource().getDataSource()).getUsers();
-
-         request.setAttribute("usersadmin", listofuser);
-        
-        
-        
+        List<User> listOfUsers = handler.getUsers();
+        request.setAttribute("usersadmin", listOfUsers);
         request.getRequestDispatcher("Admin.jsp").forward(request, response);
     }
 

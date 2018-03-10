@@ -1,8 +1,7 @@
 package Servlet;
 
-import DataAccessObject.DAOCupcake;
+import DataAccessObject.Handler;
 import Entity.User;
-import MyDataSource.CupcakeDataSource;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -15,18 +14,10 @@ public class LoginServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
 
     }
 
-    // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
-    /**
-     * Handles the HTTP <code>GET</code> method.
-     *
-     * @param request servlet request
-     * @param response servlet response
-     * @throws ServletException if a servlet-specific error occurs
-     * @throws IOException if an I/O error occurs
-     */
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -39,41 +30,21 @@ public class LoginServlet extends HttpServlet {
         String emailAddress = request.getParameter("emailAddress");
         String password = request.getParameter("password");
 
-        User f = new DAOCupcake(new CupcakeDataSource().getDataSource()).loginAuthentication(emailAddress, password);
+        Handler handler = new Handler();
+        User user = handler.loginAuthentication(emailAddress, password);
 
-        if (f != null && !f.isAdmin()) {
-
-//            if(request.getSession().getAttribute("cartlist") != null){
-//                request.getSession().removeAttribute("cartlist");
-//            }
-//                HttpSession session = request.getSession();
-//                session.setAttribute("name", emailAddress);
-//                session.setAttribute("credit", f.getCredit());
-            request.getSession().setAttribute("user", f);
+        if (user != null && !user.isAdmin()) {
+            request.getSession().setAttribute("user", user);
             request.getRequestDispatcher("MyPage.jsp").forward(request, response);
-
-        } else if (f != null && f.isAdmin()) {
-
-//            if(request.getSession().getAttribute("cartlist") != null){
-//                request.getSession().removeAttribute("cartlist");
-//            }
-//                request.getSession().setAttribute("name", emailAddress);
-//                request.getSession().setAttribute("credit", f.getCredit());
-            request.getSession().setAttribute("user", f);
+        } else if (user != null && user.isAdmin()) {
+            request.getSession().setAttribute("user", user);
             request.getRequestDispatcher("MyPage.jsp").forward(request, response);
-
         } else {
             request.setAttribute("message", "Account invalid");
             request.getRequestDispatcher("Login.jsp").forward(request, response);
-
         }
     }
 
-    /**
-     * Returns a short description of the servlet.
-     *
-     * @return a String containing servlet description
-     */
     @Override
     public String getServletInfo() {
         return "Short description";

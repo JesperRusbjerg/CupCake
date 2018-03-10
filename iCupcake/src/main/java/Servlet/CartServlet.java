@@ -1,6 +1,7 @@
 package Servlet;
 
 import DataAccessObject.DAOCupcake;
+import DataAccessObject.Handler;
 import Entity.CupCake;
 import MyDataSource.CupcakeDataSource;
 import java.io.IOException;
@@ -21,7 +22,7 @@ public class CartServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
+        Handler handler = new Handler();
         if (request.getSession().getAttribute("cartlist") == null) {
             cartlist = new ArrayList();
 
@@ -46,7 +47,7 @@ public class CartServlet extends HttpServlet {
 
             request.setAttribute("message", "CupCake has been succesfully added to your ShoppingCart!");
 
-            int bottomprice = dao.bottomPrice(bottomName);
+            int bottomprice = handler.bottomPrice(bottomName);
             int toppingprice = dao.toppingPrice(toppingName);
 
             CupCake c = new CupCake(bottomName, toppingName, (bottomprice + toppingprice) * amount, amount);
