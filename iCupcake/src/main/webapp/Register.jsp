@@ -15,7 +15,6 @@
                         <br> ${message}
                         <p class="lead">Register form:</p>
                         <form action="LoginServlet" method="post">
-                            ${message}
                             <div class="form-group">
                                 <label for="emailAddress">Email Address:</label>
                                 <input type="text" class="form-control" id="Email" name="emailAddress" placeholder="Enter email address:">
