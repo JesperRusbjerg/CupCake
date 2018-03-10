@@ -1,15 +1,12 @@
-
 package Entity;
-
 
 public class User {
 
-    
-private String name;
-private String password;
-private int credit;
-boolean admin;
-int userID;
+    private String name;
+    private String password;
+    private int credit;
+    boolean admin;
+    int userID;
 
     public User(String name, String password, int credit, boolean admin, int userID) {
         this.name = name;
@@ -42,15 +39,4 @@ int userID;
     public void setCredit(int credit) {
         this.credit = credit;
     }
-
-  
-  
-
-   
-
- 
-   
-
-
-    
 }

@@ -7,7 +7,6 @@ import Entity.CupCake;
 import Entity.Order;
 import Entity.Toppings;
 import Entity.User;
-import MyDataSource.CupcakeDataSource;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -30,10 +29,10 @@ public class DAOCupcake {
 
             String sql = "select * from users where u_email=? and u_password=?;";
             PreparedStatement s = dbc.getConnection().prepareStatement(sql);
-            
+
             s.setString(1, email);
             s.setString(2, password);
-            
+
             ResultSet resultset = s.executeQuery();
 
             resultset.next();
@@ -65,7 +64,7 @@ public class DAOCupcake {
             String sql = " select * from users where u_email=?;";
             PreparedStatement s = dbc.getConnection().prepareStatement(sql);
             s.setString(1, email);
-            
+
             ResultSet resultset = s.executeQuery();
 
             resultset.next();
@@ -87,13 +86,13 @@ public class DAOCupcake {
         try {
             dbc.open();
             String sql = "INSERT INTO cupcakes.`users` VALUES (null,?,?,?,false);";
-             PreparedStatement s = dbc.getConnection().prepareStatement(sql);
-             s.setString(1, email);
-             s.setString(2, password);
-             s.setInt(3, credit);
+            PreparedStatement s = dbc.getConnection().prepareStatement(sql);
+            s.setString(1, email);
+            s.setString(2, password);
+            s.setInt(3, credit);
             s.executeUpdate();
 
-           s.close();
+            s.close();
             dbc.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -177,7 +176,7 @@ public class DAOCupcake {
 
                 toppings.add(t);
             }
-           
+
             dbc.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -221,7 +220,7 @@ public class DAOCupcake {
             String sql = "delete from users where userID =?;";
             PreparedStatement s = dbc.getConnection().prepareStatement(sql);
             s.setInt(1, userID);
-            
+
             s.executeUpdate();
 
             s.close();
@@ -239,7 +238,7 @@ public class DAOCupcake {
             dbc.open();
 
             String sql = "select b_price from bottoms where b_name =?;";
-             PreparedStatement s = dbc.getConnection().prepareStatement(sql);
+            PreparedStatement s = dbc.getConnection().prepareStatement(sql);
             s.setString(1, name);
 
             ResultSet resultset = s.executeQuery();
@@ -247,7 +246,7 @@ public class DAOCupcake {
 
             price = resultset.getInt("b_price");
 
-           s.close();
+            s.close();
             dbc.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
@@ -263,9 +262,9 @@ public class DAOCupcake {
             dbc.open();
 
             String sql = "select t_price from toppings where t_name =?;";
-         PreparedStatement s = dbc.getConnection().prepareStatement(sql);
+            PreparedStatement s = dbc.getConnection().prepareStatement(sql);
             s.setString(1, name);
-            
+
             ResultSet resultset = s.executeQuery();
 
             resultset.next();
@@ -308,7 +307,7 @@ public class DAOCupcake {
             PreparedStatement s = dbc.getConnection().prepareStatement(sql);
             s.setInt(1, userID);
             s.setInt(2, price);
-           s.executeUpdate();
+            s.executeUpdate();
 
             s.close();
             dbc.close();
@@ -353,7 +352,7 @@ public class DAOCupcake {
             s.setString(4, topping);
             s.setInt(5, cupcakePrice);
             s.setInt(6, amount);
-            
+
             s.executeUpdate();
 
             s.close();
@@ -419,7 +418,7 @@ public class DAOCupcake {
         }
         return temp;
     }
-    
+
     public List<Order> AllOrders() {
         List<Order> temp = new ArrayList();
         try {
@@ -443,23 +442,23 @@ public class DAOCupcake {
         }
         return temp;
     }
-    
-    public int findOrderItemNumber(int orderID, String bottom, String topping){
+
+    public int findOrderItemNumber(int orderID, String bottom, String topping) {
         int found = 0;
         try {
-         dbc.open();
-         String sql = "select orderitemID from orderitems where orderID =? and bottom =? and topping =?;";
-         PreparedStatement s = dbc.getConnection().prepareStatement(sql);
-        s.setInt(1, orderID);
-        s.setString(2, bottom);
-        s.setString(3, topping);
-                        
+            dbc.open();
+            String sql = "select orderitemID from orderitems where orderID =? and bottom =? and topping =?;";
+            PreparedStatement s = dbc.getConnection().prepareStatement(sql);
+            s.setInt(1, orderID);
+            s.setString(2, bottom);
+            s.setString(3, topping);
+
             ResultSet resultset = s.executeQuery();
 
-           if( resultset.next()){
+            if (resultset.next()) {
 
                 found = resultset.getInt("orderitemID");
-           }
+            }
             s.close();
             dbc.close();
         } catch (SQLException ex) {
@@ -467,9 +466,9 @@ public class DAOCupcake {
         }
         return found;
     }
-    
-    public void updatePrice(int price, int orderitemID){
-        
+
+    public void updatePrice(int price, int orderitemID) {
+
         try {
             dbc.open();
 
@@ -484,12 +483,12 @@ public class DAOCupcake {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        
+
     }
-    
-    public void updateTotalPrice(int price, int orderID){
-        
-         try {
+
+    public void updateTotalPrice(int price, int orderID) {
+
+        try {
             dbc.open();
 
             String sql = "update orders set totalprice=? where orderID=?;";
@@ -503,20 +502,19 @@ public class DAOCupcake {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        
-        
+
     }
-    
-     public void addBottom(String name, int price) {
+
+    public void addBottom(String name, int price) {
         try {
             dbc.open();
 
             String sql = "INSERT INTO bottoms VALUES (?,?);";
             PreparedStatement s = dbc.getConnection().prepareStatement(sql);
-            
+
             s.setString(1, name);
             s.setInt(2, price);
-            
+
             s.executeUpdate();
 
             s.close();
@@ -526,17 +524,17 @@ public class DAOCupcake {
         }
 
     }
-     
-     public void addTopping(String name, int price) {
+
+    public void addTopping(String name, int price) {
         try {
             dbc.open();
 
             String sql = "INSERT INTO toppings VALUES (?,?);";
             PreparedStatement s = dbc.getConnection().prepareStatement(sql);
-            
+
             s.setString(1, name);
             s.setInt(2, price);
-            
+
             s.executeUpdate();
 
             s.close();
@@ -546,8 +544,8 @@ public class DAOCupcake {
         }
 
     }
-     
-     public User getUser(String emailaddress) {
+
+    public User getUser(String emailaddress) {
         User x = null;
         try {
             dbc.open();
@@ -562,8 +560,8 @@ public class DAOCupcake {
                 int userID = resultset.getInt("userID");
                 String email = resultset.getString("u_email");
                 String psw = resultset.getString("u_password");
-            int credit = resultset.getInt("u_credit");
-            x = new User (email, psw, credit, false, userID);
+                int credit = resultset.getInt("u_credit");
+                x = new User(email, psw, credit, false, userID);
             }
 
             s.close();
@@ -574,8 +572,5 @@ public class DAOCupcake {
 
         return x;
     }
-   
-        
-    }
 
-
+}

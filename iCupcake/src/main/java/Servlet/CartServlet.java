@@ -1,11 +1,9 @@
-
 package Servlet;
 
 import DataAccessObject.DAOCupcake;
 import Entity.CupCake;
 import MyDataSource.CupcakeDataSource;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -14,60 +12,50 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-
 @WebServlet(name = "CartServlet", urlPatterns = {"/CartServlet"})
 public class CartServlet extends HttpServlet {
 
-    
     private List<CupCake> cartlist;
-    DAOCupcake c = new DAOCupcake(new CupcakeDataSource().getDataSource());
-    
-    
+    DAOCupcake dao = new DAOCupcake(new CupcakeDataSource().getDataSource());
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        if(request.getSession().getAttribute("cartlist") == null){
-             cartlist = new ArrayList();
-            
-        }else{
-             cartlist = (List<CupCake>) request.getSession().getAttribute("cartlist");
+
+        if (request.getSession().getAttribute("cartlist") == null) {
+            cartlist = new ArrayList();
+
+        } else {
+            cartlist = (List<CupCake>) request.getSession().getAttribute("cartlist");
         }
 
-            String bottomName = request.getParameter("selectbottom");
-             String toppingName = request.getParameter("selecttopping");
-       
-        
-        
+        String bottomName = request.getParameter("selectbottom");
+        String toppingName = request.getParameter("selecttopping");
+
         int amount = 0;
-        if(request.getParameter("amount").equals("")){
-            request.setAttribute("message", "You must order atleast 1 or max 50 cupcake to add to cart.");
-            request.getRequestDispatcher("CupCakeServlet").forward(request, response); 
-        }else {
-         amount = Integer.parseInt(request.getParameter("amount"));
-        }
-        if(amount <= 0 || amount >= 100){
-        request.setAttribute("message", "You must order atleast 1, and max 100 cupcake to add to cart.");
+        if (request.getParameter("amount").equals("")) {
+            request.setAttribute("message", "You must order at least 1 or max 50 cupcake to add to cart.");
             request.getRequestDispatcher("CupCakeServlet").forward(request, response);
+        } else {
+            amount = Integer.parseInt(request.getParameter("amount"));
         }
-        
-        else{
-       
-      request.setAttribute("message", "CupCake has been succesfully added to your ShoppingCart!");
+        if (amount <= 0 || amount >= 100) {
+            request.setAttribute("message", "You must order at least 1, and max 100 cupcake to add to cart.");
+            request.getRequestDispatcher("CupCakeServlet").forward(request, response);
+        } else {
 
-        int bottomprice = c.bottomPrice(bottomName);
-        int toppingprice = c.toppingPrice(toppingName);
-        
-        
-        CupCake c = new CupCake(bottomName, toppingName, (bottomprice + toppingprice) * amount, amount);
-       
-        cartlist.add(c);
-        
-        
-        
-        request.getSession().setAttribute("cartlist", cartlist);
+            request.setAttribute("message", "CupCake has been succesfully added to your ShoppingCart!");
 
-          request.getRequestDispatcher("CupCakeServlet").forward(request, response);
+            int bottomprice = dao.bottomPrice(bottomName);
+            int toppingprice = dao.toppingPrice(toppingName);
+
+            CupCake c = new CupCake(bottomName, toppingName, (bottomprice + toppingprice) * amount, amount);
+
+            cartlist.add(c);
+
+            request.getSession().setAttribute("cartlist", cartlist);
+
+            request.getRequestDispatcher("CupCakeServlet").forward(request, response);
         }
     }
 

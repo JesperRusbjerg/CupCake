@@ -1,15 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Servlet;
 
 import DataAccessObject.DAOCupcake;
 import Entity.Order;
 import MyDataSource.CupcakeDataSource;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,28 +11,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author Jesper
- */
 @WebServlet(name = "AdminShowOrderServlet", urlPatterns = {"/AdminShowOrderServlet"})
 public class AdminShowOrderServlet extends HttpServlet {
 
-   
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-       
-        
-                DAOCupcake x =  new DAOCupcake(new CupcakeDataSource().getDataSource());
-                
-                
-                
-                
-                List<Order> o = x.AllOrders();
-                request.setAttribute("orders", o);
-             request.getRequestDispatcher("AdminShowOrders.jsp").forward(request, response);
-        
+
+        DAOCupcake dao = new DAOCupcake(new CupcakeDataSource().getDataSource());
+
+        List<Order> o = dao.AllOrders();
+        request.setAttribute("orders", o);
+        request.getRequestDispatcher("AdminShowOrders.jsp").forward(request, response);
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
