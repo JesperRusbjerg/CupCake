@@ -49,9 +49,7 @@
                         </tbody>
                     </table>
                 </div>
-                <% if (request.getParameter("orderID") != null) {
-                        int orderID = Integer.parseInt(request.getParameter("orderID"));
-                        DAOCupcake x = new DAOCupcake(new CupcakeDataSource().getDataSource());
+                                <% if (request.getAttribute("details") != null) {
                 %>
                 <div class="col-md-6">
                     <h1> Order Details: </h1>
@@ -66,8 +64,8 @@
                         </thead> 
                         <tbody>
                             <%
-                                List<CupCake> b = (List<CupCake>) x.OrderDetailsUser(orderID);
-                                for (CupCake elem : b) {
+                                List<CupCake> details = (List<CupCake>) request.getAttribute("details");
+                                for (CupCake elem : details) {
                             %>
                             <tr>
                                 <th> <% out.print(elem.getBottom()); %> </th>
