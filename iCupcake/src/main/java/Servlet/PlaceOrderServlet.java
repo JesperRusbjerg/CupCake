@@ -32,7 +32,7 @@ public class PlaceOrderServlet extends HttpServlet {
         int orderID = dao.getOrderID(u.getUserID());
 
         for (CupCake cupCake : c) {
-            dao.addOrderItem(orderID, u.getUserID(), cupCake.getBottom(), cupCake.getTop(), cupCake.getPrice(), cupCake.getAmount());
+            dao.addOrderItem(orderID, cupCake.getBottom(), cupCake.getTop(), cupCake.getPrice(), cupCake.getAmount());
         }
 
         u.setCredit(u.getCredit() - price);
