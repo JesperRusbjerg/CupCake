@@ -61,10 +61,7 @@
                 </div>
 
            <% if(request.getAttribute("details") != null){
-                            %>
-                          <div class="col-md-6">
-                        int orderID = Integer.parseInt(request.getParameter("orderID"));
-                        DAOCupcake x = new DAOCupcake(new CupcakeDataSource().getDataSource());
+                            
                 %>
                 <div class="col-md-6">
 

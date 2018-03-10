@@ -17,10 +17,7 @@
     </head>
     <body>
         <%@include file="Include/MyNavbar.jsp" %>
-<<<<<<< HEAD
 
-=======
->>>>>>> 01197ddc396c44a4e4133a64b5c73557f4f870e3
         <div class="container-fluid">
             <div class="row"> 
                 <div class="col-md-6">
