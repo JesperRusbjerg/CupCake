@@ -19,8 +19,6 @@
     <body>
         <%@include file="Include/MyNavbar.jsp" %>
 
-
-
         <div class="container-fluid">
             <div class="row"> 
                 <div class="col-md-6">

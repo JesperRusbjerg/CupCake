@@ -70,10 +70,8 @@
             
                             
 
-                    <% if (request.getParameter("orderID") != null) {
+                                <% if (request.getAttribute("details") != null) {
                         
-                            int orderID = Integer.parseInt(request.getParameter("orderID"));
-                            DAOCupcake x = new DAOCupcake(new CupcakeDataSource().getDataSource());
                             %>
                           <div class="col-md-6">
 
@@ -89,8 +87,8 @@
                             <tbody>
                                 
                             <%
-                            List<CupCake> b = (List<CupCake>) x.OrderDetailsUser(orderID);
-                            for (CupCake elem : b) {
+                            List<CupCake> details = (List<CupCake>) request.getAttribute("details");
+                            for (CupCake elem : details) {
                     %>
                             
                                 <tr>

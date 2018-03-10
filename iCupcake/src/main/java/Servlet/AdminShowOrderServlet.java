@@ -6,6 +6,7 @@
 package Servlet;
 
 import DataAccessObject.DAOCupcake;
+import Entity.CupCake;
 import Entity.Order;
 import MyDataSource.CupcakeDataSource;
 import java.io.IOException;
@@ -32,7 +33,12 @@ public class AdminShowOrderServlet extends HttpServlet {
         
                 DAOCupcake x =  new DAOCupcake(new CupcakeDataSource().getDataSource());
                 
-                
+               String check = request.getParameter("orderID");
+                if(check != null){
+                int orderID = Integer.parseInt(request.getParameter("orderID"));
+                List<CupCake> details = (List<CupCake>) x.OrderDetailsUser(orderID);
+                request.setAttribute("details", details);
+                }
                 
                 
                 List<Order> o = x.AllOrders();
