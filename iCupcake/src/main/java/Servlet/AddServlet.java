@@ -1,50 +1,35 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Servlet;
 
 import DataAccessObject.DAOCupcake;
 import MyDataSource.CupcakeDataSource;
 import java.io.IOException;
-import java.io.PrintWriter;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author Jesper
- */
 @WebServlet(name = "AddServlet", urlPatterns = {"/AddServlet"})
 public class AddServlet extends HttpServlet {
 
-                   DAOCupcake x =  new DAOCupcake(new CupcakeDataSource().getDataSource());
+    DAOCupcake dao = new DAOCupcake(new CupcakeDataSource().getDataSource());
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
+
         String choice = request.getParameter("addSetting");
         String name = request.getParameter("name");
         int price = Integer.parseInt(request.getParameter("price"));
-        
-        if(choice.equals("toppings")){
-            x.addTopping(name, price);
-        }else{
-            x.addBottom(name, price);
+
+        if (choice.equals("toppings")) {
+            dao.addTopping(name, price);
+        } else {
+            dao.addBottom(name, price);
         }
-        
-        
-        
-        
+
         request.getRequestDispatcher("Admin.jsp").forward(request, response);
 
-        
-        
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

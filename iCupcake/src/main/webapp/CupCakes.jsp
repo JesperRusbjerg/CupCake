@@ -1,5 +1,3 @@
-
-
 <%@page import="Entity.User"%>
 <%@page import="java.util.ArrayList"%>
 <%@page import="DataAccessObject.DAOCupcake"%>
@@ -24,9 +22,9 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-6">
-                        <h1 class="display-4">Cupcake page!</h1>
-                        <p class="lead">${message}</p>
-                        <p class="lead">Each topping is added together and a final price will be shown in your shopping cart.</p>
+                    <h1 class="display-4">Cupcake page!</h1>
+                    <p class="lead">${message}</p>
+                    <p class="lead">Each topping is added together and a final price will be shown in your shopping cart.</p>
                     <br>
                     <form action="CartServlet" method="post">
                         <div class="form-group">
@@ -67,22 +65,17 @@
                 </div>
 
                 <div class="col-md-6">
-                        <%if (request.getSession().getAttribute("cartlist") == null) { %>
-                        <h1 class="display-4">Shopping Cart:</h1>
-                        <p class="lead">There are no items added yet!</p>
+                    <%if (request.getSession().getAttribute("cartlist") == null) { %>
+                    <h1 class="display-4">Shopping Cart:</h1>
+                    <p class="lead">There are no items added yet!</p>
 
-
-                        <% }
-                        else {%>
-
-
-                        <h1 class="display-4">This is your current shoppingcart</h1>
+                    <% } else {%>
+                    <h1 class="display-4">This is your current shoppingcart</h1>
                     <hr class="my-4">
 
                     <c:forEach var="cupcake" items="${cartlist}">
                         <p class="lead">Amount: ${cupcake.amount} - Bottom: ${cupcake.bottom} + Top: ${cupcake.top} Price: - ${cupcake.price} kr</p> 
                     </c:forEach>
-
 
                     <%     int totalprice = 0;
                         for (CupCake elem : (List<CupCake>) request.getSession().getAttribute("cartlist")) {
@@ -91,7 +84,6 @@
                     %>
                     <hr class="my-4">
                     <p class="lead font-weight-bold"> Total Price: <% out.print(totalprice); %> </p>
-
 
                     <%
                         if (request.getSession().getAttribute("user") != null) {
@@ -110,12 +102,9 @@
                         <br><input type="submit" class="btn btn-primary" value="Clear Basket!"/>
                     </form>
 
-
-                    <%}
-                    else {%>
+                    <%} else {%>
                     <p> Your order costs: <% out.print(totalprice); %> . Your account only has <% out.print(v.getCredit()); %> amount of credit.<br> You can add more credit under "My Page"<%}%>
-                        <%}
-                        else {%>
+                        <%} else {%>
                     <p class="alert alert-danger">You are currently not logged in. You must log in to place an order. </p>
                     <%}
                         }%>

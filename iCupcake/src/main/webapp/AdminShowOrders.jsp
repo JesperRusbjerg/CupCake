@@ -19,13 +19,7 @@
     <body>
 
         <%@include file="Include/MyNavbar.jsp" %>
-        
-
-
-
-
         <h1>ALL ORDERS:</h1>
-
         <div class="container-fluid">
             <div class="row"> 
                 <div class="col-md-6">
@@ -37,9 +31,7 @@
                                 <th> Order Price </th>
                             </tr>
                         </thead>
-
                         <tbody>
-
                             <% List<Order> o = (List<Order>) request.getAttribute("orders");
                                 for (Order elem : o) {%>
                             <tr>
@@ -67,25 +59,26 @@
                         </tbody>
                     </table>
                 </div>
-            
-                            
 
-                                <% if (request.getAttribute("details") != null) {
-                        
+           <% if(request.getAttribute("details") != null){
                             %>
                           <div class="col-md-6">
+                        int orderID = Integer.parseInt(request.getParameter("orderID"));
+                        DAOCupcake x = new DAOCupcake(new CupcakeDataSource().getDataSource());
+                %>
+                <div class="col-md-6">
 
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th>Bottom</th>
-                                    <th>Topping </th>
-                                    <th>Amount of cakes</th>
-                                    <th> Price for Cakes</th>
-                                </tr>
-                            </thead> 
-                            <tbody>
-                                
+                    <table class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Bottom</th>
+                                <th>Topping </th>
+                                <th>Amount of cakes</th>
+                                <th> Price for Cakes</th>
+                            </tr>
+                        </thead> 
+                        <tbody>
+
                             <%
                             List<CupCake> details = (List<CupCake>) request.getAttribute("details");
                             for (CupCake elem : details) {
@@ -97,15 +90,14 @@
                                     <th>  <% out.print(elem.getAmount()); %> </th>
                                     <th> <% out.print(elem.getPrice()); %>  </th>
 
-                                    <%}%>
-                                </tr> 
-                            </tbody>
-                        </table>    
-                        
-                        <p> Price for cakes: <% out.print(Integer.parseInt(request.getParameter("totalprice"))); %>  </p>      
-                    </div>
-                    <%}%>
+                                <%}%>
+                            </tr> 
+                        </tbody>
+                    </table>    
 
+                    <p> Price for cakes: <% out.print(Integer.parseInt(request.getParameter("totalprice"))); %>  </p>      
+                </div>
+                <%}%>
             </div>
             <form action="Admin.jsp" method="post">
                 <br><input type="submit" value="Back to admin page"/>

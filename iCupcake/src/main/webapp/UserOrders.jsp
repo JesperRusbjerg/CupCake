@@ -1,4 +1,3 @@
-
 <%@page import="Entity.CupCake"%>
 <%@page import="Entity.Order"%>
 <%@page import="java.util.List"%>
@@ -18,11 +17,14 @@
     </head>
     <body>
         <%@include file="Include/MyNavbar.jsp" %>
+<<<<<<< HEAD
 
+=======
+>>>>>>> 01197ddc396c44a4e4133a64b5c73557f4f870e3
         <div class="container-fluid">
             <div class="row"> 
                 <div class="col-md-6">
-                    <h1> Your order history: </h1>
+                    <h1 class="display-4"> Your order history: </h1>
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -30,38 +32,32 @@
                                 <th> Order Price </th>
                             </tr>
                         </thead>
-
                         <tbody>
                             <% List<Order> o = (List<Order>) request.getAttribute("orders");
 
-            for (Order elem : o) {%>
+                                for (Order elem : o) {%>
                             <tr>
                                 <th> Order ID: <% out.print(elem.getOrderID()); %>  </th>
                                 <th> Total Price: <%  out.print(elem.getTotalprice()); %>  </th> 
 
                                 <th>
                                     <form action="ShowOrdersServlet" method="post">
-
                                         <input type="hidden" name="orderID" value="<%out.print(elem.getOrderID());%>" />
                                         <input type="hidden" name="totalprice" value="<%out.print(elem.getTotalprice());%>" />
                                         <input type="submit" class="btn btn-primary" value="Order Details"/><br>
-
                                     </form>
                                 </th>
-                                 <%  }%>
+                                <%  }%>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-               
-
-
                 <% if (request.getParameter("orderID") != null) {
                         int orderID = Integer.parseInt(request.getParameter("orderID"));
                         DAOCupcake x = new DAOCupcake(new CupcakeDataSource().getDataSource());
                 %>
                 <div class="col-md-6">
-            <h1> Order Details: </h1>
+                    <h1> Order Details: </h1>
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -72,12 +68,10 @@
                             </tr>
                         </thead> 
                         <tbody>
-
                             <%
                                 List<CupCake> b = (List<CupCake>) x.OrderDetailsUser(orderID);
                                 for (CupCake elem : b) {
                             %>
-
                             <tr>
                                 <th> <% out.print(elem.getBottom()); %> </th>
                                 <th>  <% out.print(elem.getTop()); %> </th>
@@ -88,16 +82,10 @@
                             </tr> 
                         </tbody>
                     </table>    
-
                     <p> Price for cakes: <% out.print(Integer.parseInt(request.getParameter("totalprice"))); %>  </p>      
                 </div>
-
-
-
-
                 <%}%>
             </div>
         </div>
-
     </body>
 </html>

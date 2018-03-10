@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Servlet;
 
 import DataAccessObject.DAOCupcake;
@@ -14,26 +9,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author Jesper
- */
 @WebServlet(name = "AdminServlet", urlPatterns = {"/AdminServlet"})
 public class AdminServlet extends HttpServlet {
 
-    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-      
-        
-        int del = Integer.parseInt(request.getParameter("userid"));
-        
-        DAOCupcake c = new DAOCupcake(new CupcakeDataSource().getDataSource());
 
-        c.deleteUser(del);
-        
-        
+        int del = Integer.parseInt(request.getParameter("userid"));
+
+        DAOCupcake dao = new DAOCupcake(new CupcakeDataSource().getDataSource());
+
+        dao.deleteUser(del);
+
         request.getRequestDispatcher("Admin.jsp").forward(request, response);
     }
 

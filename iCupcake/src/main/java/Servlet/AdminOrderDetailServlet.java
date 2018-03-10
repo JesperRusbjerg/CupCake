@@ -1,15 +1,9 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Servlet;
 
 import DataAccessObject.DAOCupcake;
 import Entity.CupCake;
 import MyDataSource.CupcakeDataSource;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,32 +11,27 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author Jesper
- */
 @WebServlet(name = "AdminOrderDetailServlet", urlPatterns = {"/AdminOrderDetailServlet"})
 public class AdminOrderDetailServlet extends HttpServlet {
 
-           DAOCupcake x =  new DAOCupcake(new CupcakeDataSource().getDataSource());
+    DAOCupcake dao = new DAOCupcake(new CupcakeDataSource().getDataSource());
 
-    
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        
-        int userID = Integer.parseInt(request.getParameter("orderID")); 
-         int totalPrice = Integer.parseInt(request.getParameter("totalprice"));
+
+        int userID = Integer.parseInt(request.getParameter("orderID"));
+        int totalPrice = Integer.parseInt(request.getParameter("totalprice"));
         int userIDD = Integer.parseInt(request.getParameter("userID"));
-         
-        List<CupCake> b = x.OrderDetailsUser(userID);
-        
+
+        List<CupCake> b = dao.OrderDetailsUser(userID);
+
         request.setAttribute("userid", userIDD);
         request.setAttribute("orderid", userID);
         request.setAttribute("order", b);
         request.setAttribute("price", totalPrice);
         request.getRequestDispatcher("AdminOrderDetail.jsp").forward(request, response);
-        
+
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

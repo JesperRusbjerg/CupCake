@@ -1,13 +1,11 @@
-
 package Entity;
-
 
 public class CupCake {
 
-private final String bottom;
-private final String top;
-private final int price;
-private int amount;
+    private final String bottom;
+    private final String top;
+    private final int price;
+    private int amount;
 
     public CupCake(String bottom, String top, int price, int amount) {
         this.bottom = bottom;
@@ -31,11 +29,4 @@ private int amount;
     public int getAmount() {
         return amount;
     }
-
-    
-
-    
-
-
-    
 }

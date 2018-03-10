@@ -1,8 +1,3 @@
-<%-- 
-    Document   : index
-    Created on : 09-03-2018, 10:06:25
-    Author     : mette
---%>
 
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>

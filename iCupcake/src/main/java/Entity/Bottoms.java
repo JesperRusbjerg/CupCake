@@ -1,15 +1,9 @@
-
 package Entity;
-
 
 public class Bottoms {
 
-String name;
-int price;
-// rettelse eksempel 
-// merge eksempel mette
-// rettelse eksempel
-// merge eksempelfejl rasmus
+    String name;
+    int price;
 
     public Bottoms(String name, int price) {
         this.name = name;

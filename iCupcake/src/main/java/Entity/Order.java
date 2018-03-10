@@ -1,9 +1,7 @@
-
 package Entity;
 
-
 public class Order {
-    
+
     int orderID;
     int userID;
     int totalprice;
@@ -25,7 +23,4 @@ public class Order {
     public int getTotalprice() {
         return totalprice;
     }
-    
-    
-    
 }

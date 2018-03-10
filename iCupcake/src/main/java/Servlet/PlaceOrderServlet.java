@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package Servlet;
 
 import DataAccessObject.DAOCupcake;
@@ -10,7 +5,6 @@ import Entity.CupCake;
 import Entity.User;
 import MyDataSource.CupcakeDataSource;
 import java.io.IOException;
-import java.io.PrintWriter;
 import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,38 +12,34 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-/**
- *
- * @author Jesper
- */
 @WebServlet(name = "PlaceOrderServlet", urlPatterns = {"/PlaceOrderServlet"})
 public class PlaceOrderServlet extends HttpServlet {
 
-    DAOCupcake x =  new DAOCupcake(new CupcakeDataSource().getDataSource());
-    
+    DAOCupcake dao = new DAOCupcake(new CupcakeDataSource().getDataSource());
+
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
         User u = (User) request.getSession().getAttribute("user");
-        List<CupCake> c =(List<CupCake>) request.getSession().getAttribute("cartlist");
+        List<CupCake> c = (List<CupCake>) request.getSession().getAttribute("cartlist");
         int price = 0;
         for (CupCake cupCake : c) {
             price += cupCake.getPrice();
         }
-        
-        x.addOrder(price, u.getUserID());
-        
-        int orderID = x.getOrderID(u.getUserID());
-        
+
+        dao.addOrder(price, u.getUserID());
+
+        int orderID = dao.getOrderID(u.getUserID());
+
         for (CupCake cupCake : c) {
-            x.addOrderItem(orderID, u.getUserID(), cupCake.getBottom(), cupCake.getTop(), cupCake.getPrice(), cupCake.getAmount());
+            dao.addOrderItem(orderID, u.getUserID(), cupCake.getBottom(), cupCake.getTop(), cupCake.getPrice(), cupCake.getAmount());
         }
-        
+
         u.setCredit(u.getCredit() - price);
         request.getSession().setAttribute("user", u);
-        
-        x.setCreditToUser(u, u.getCredit());
-        
+
+        dao.setCreditToUser(u, u.getCredit());
+
         request.getSession().removeAttribute("cartlist");
         request.getRequestDispatcher("MyPage.jsp").forward(request, response);
     }
