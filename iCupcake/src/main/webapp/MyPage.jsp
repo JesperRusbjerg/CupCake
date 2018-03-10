@@ -42,7 +42,7 @@
                     <p class="lead"> Logged in as : <% out.print(v.getName());  %>
                         <%  if (v.isAdmin()) { %>
                     <p class="lead"> Admin Page:
-                        <a href="Admin.jsp">Admin page:</a><br>
+                        <a href="AdminServlet">Admin page:</a><br>
                         <%}%>
                 </div>
             </div>

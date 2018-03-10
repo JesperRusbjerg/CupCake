@@ -29,12 +29,6 @@
 
                     <h1 class="display-4">Admin page!</h1><br>
 
-                    <%
-                        List<User> c = new DAOCupcake(new CupcakeDataSource().getDataSource()).getUsers();
-
-                        request.getSession().setAttribute("usersadmin", c);
-                    %>
-
                     <form action="AdminServlet" method="post">
                         <div class="form-group">
                             <select class="custom-select" id="selectUsersAdmin" name="userid">
