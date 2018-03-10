@@ -6,26 +6,33 @@
         <link href="Stylesheet.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
-
         <%@include file="Include/MyNavbar.jsp" %>
-
-        
-        
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-
-                    <h1 class="display-4">Register Page!</h1><br>
-                <form action="RegisterServlet" method="post">
-                    <br> ${message}
-                    <br> Register form:
-                    <br>Email adress: <input type="text" name="emailAddress"/>
-                    <br>Password: <input type="password" name="password"/>
-                    <br>Credits: As a free-signup bonus, you get 50 credits, to spend on Cupcakes<br> However, you can easily add more under "My page" once logged in! <input type="hidden" name="credit" value="50"/>
-                    <br><input class="btn btn-primary" type="submit" value="Register"/>
-                </form>
+                    <h1 class="display-4">Register Page!</h1>
+                    <form action="RegisterServlet" method="post">
+                        <br> ${message}
+                        <p class="lead">Register form:</p>
+                        <form action="LoginServlet" method="post">
+                            ${message}
+                            <div class="form-group">
+                                <label for="emailAddress">Email Address:</label>
+                                <input type="text" class="form-control" id="Email" name="emailAddress" placeholder="Enter email address:">
+                            </div>
+                            <div class="form-group">
+                                <label for="password">Password:</label>
+                                <input type="password" class="form-control" id="Password" name="password" placeholder="Enter password:">
+                            </div>
+                            <br>
+                            <p class="lead">Credits: As a free-signup bonus, you get 50 credits to spend on Cupcakes.</p>
+                            <p class="lead">However, you can easily add more under "My page" once logged in!</p>
+                            <input type="hidden" name="credit" value="50"/>
+                            <br><input class="btn btn-primary" type="submit" value="Register"/>
+                        </form>
+                    </form>
+                </div>
             </div>
-        </div>
         </div>
     </body>
 </html>

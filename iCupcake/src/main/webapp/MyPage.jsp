@@ -21,15 +21,17 @@
             <div class="row">
                 <div class="col-md-12">
                     <h1 class="display-4">Your page:</h1>
-                    <p class="lead"> In the top of you can use the Menu to navigate through the site! </p>
-                    <p class="lead"> CupCakes is for ordering CupCakes! </p>
-                    <p class="lead"> Here "My Page" you can add additional credits! And also see your previous orders! </p>
+                    <br>
+                    <p class="lead"> Use the Top Menu to navigate through the site.</p>
+                    <p class="lead"> Click on 'Shop' to order cupcakes.</p>
+                    <br>
+                    <p class="lead"> Here at 'My Page' you can add additional credits, and also see your previous orders.</p>
                     ${message}
-                    <p class="lead"> Credits: <% out.print(v.getCredit()); %>   </p>
+                    <p class="lead"> Your current credits: <% out.print(v.getCredit()); %>   </p>
                     <form action="addCreditServlet" method="post">
                         <div class="form-group">
-                            <label for="credit">Credit:</label>
-                            <input type="number" class="form-control" id="credit" name="credit" placeholder="Enter credits amount:">
+                            <label for="credit">Enter amount of credits to add:</label>
+                            <input type="number" class="form-control" id="credit" name="credit" placeholder="Amount:">
                             <br>
                             <input type="submit" class="btn btn-primary" value="Add Credits"/><br>
                         </div>
@@ -42,8 +44,10 @@
                     <p class="lead"> Logged in as : <% out.print(v.getName());  %>
                         <%  if (v.isAdmin()) { %>
                     <p class="lead"> Admin Page:
-                        <a href="AdminServlet">Admin page:</a><br>
-                        <%}%>
+                    <form action="AdminServlet" method="post">
+                        <input type="submit" class="btn btn-primary" value="Admin Page"/><br>
+                    </form>
+                    <%}%>
                 </div>
             </div>
         </div>

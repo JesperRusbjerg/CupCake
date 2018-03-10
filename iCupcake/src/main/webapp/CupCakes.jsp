@@ -92,8 +92,8 @@
 
                     <% if (v.getCredit() >= totalprice) { %>  
                     <p class="lead">Placing the order will minus your accouts credits by: <% out.print(totalprice); %> </p>
-                    <p class="lead"> As soon as you press the button, your CupCakes will be ready for pickup</p>
-                    <p class="lead"> You will be able to see your order History under "My Page" </p>
+                    <p class="lead">As soon as you press the button, your CupCakes will be ready for pickup.</p>
+                    <p class="lead">You will be able to see your order History under "My Page" </p>
                     <form action="PlaceOrderServlet">
                         <br><input type="submit" class="btn btn-primary" value="Place order!"/> 
                     </form>

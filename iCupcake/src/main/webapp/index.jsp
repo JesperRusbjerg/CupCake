@@ -14,20 +14,16 @@
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
-                <h1 class="display-4">Welcome!</h1>
-                <br>
-
-                <p class="lead"> This is the most delicious CupCake shop of all time </p>
-
-                <p class="lead"> You can see our delicious selection of Bottoms and Toppings under the tab "Cup Cakes" </p>
-
-                <p class="lead"> As soon as you place an order, it will be ready for pick up in our CupCake Shop </p>
-
-                <p class="lead"> Once logged in, you can view your page under the "My Page" function! </p>
-
-                <p class="lead"> You can login under the Log-in function in the top </p>
-
-                <p class="lead"> If you are still not registered, you can also register under the Log in tab </p>
+                    <h1 class="display-4">Welcome!</h1>
+                    <br>
+                    <p class="lead"> This is the most delicious CupCake Shop of all times.</p>
+                    <p class="lead"> You can see our delicious selection of Bottoms and Toppings under the 'Shop' tab.</p>
+                    <p class="lead"> As soon as you place an order, it will be ready for pick up in our CupCake Shop!</p>
+                    <br>
+                    <p class="lead"> Please log in under the 'Log in' tab in the top.</p>
+                    <p class="lead"> If you are still not registered, you can also register under the 'Log in' tab.</p>
+                    <br>
+                    <p class="lead">Remember: A cake a day keeps the doctor away (if you can hit him)!</p>
                 </div>
             </div>
         </div>
