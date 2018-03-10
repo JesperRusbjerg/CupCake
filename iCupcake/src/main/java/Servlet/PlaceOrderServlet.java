@@ -36,6 +36,7 @@ public class PlaceOrderServlet extends HttpServlet {
         request.getSession().setAttribute("user", u);
         handler.setCreditToUser(u, u.getCredit());
         request.getSession().removeAttribute("cartlist");
+        request.setAttribute("ordersucces", "Order Succesful! Your CupCakes are ready for Pick-Up! \n You can view your orders in your Show Orders tab!");
         request.getRequestDispatcher("MyPage.jsp").forward(request, response);
     }
 
