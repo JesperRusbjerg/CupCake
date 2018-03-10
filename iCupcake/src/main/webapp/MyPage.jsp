@@ -21,11 +21,11 @@
             <div class="row">
                 <div class="col-md-12">
                     <h1 class="display-4">Your page:</h1>
-                    <% if(request.getAttribute("ordersucces") != null){
-                    String order = (String) request.getAttribute("ordersucces");
+                    <% if (request.getAttribute("ordersucces") != null) {
+                            String order = (String) request.getAttribute("ordersucces");
                     %>
                     <br>
-                    <p class="bg-success"> <% out.print(order); %> </p> 
+                    <p class="bg-success text-center"> <% out.print(order); %> </p> 
                     <% }%>
                     <br>
                     <p class="lead"> Use the Top Menu to navigate through the site.</p>
@@ -34,7 +34,7 @@
                     <p class="lead"> Here at 'My Page' you can add additional credits, and also see your previous orders.</p>
                     ${message}
                     <p class="lead"> Your current credits: <% out.print(user.getCredit()); %>   </p>
-                    
+
                     <form action="AddCreditServlet" method="post">
                         <div class="form-group">
                             <label for="credit">Enter amount of credits to add:</label>
@@ -43,7 +43,7 @@
                             <input type="submit" class="btn btn-primary" value="Add Credits"/><br>
                         </div>
                     </form>
-                    
+
                     <br>
                     <form action="ShowOrdersServlet" method="post">
                         <input type="submit" class="btn btn-primary" value="Show Orders"/><br>
