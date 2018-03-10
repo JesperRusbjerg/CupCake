@@ -1,9 +1,8 @@
 package Servlet;
 
-import DataAccessObject.DAOCupcake;
+import DataAccessObject.Handler;
 import Entity.CupCake;
 import Entity.Order;
-import MyDataSource.CupcakeDataSource;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -18,21 +17,17 @@ public class AdminShowOrderServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-       
-        
-        DAOCupcake dao = new DAOCupcake(new CupcakeDataSource().getDataSource());
-                
-               String check = request.getParameter("orderID");
-                if(check != null){
-                int orderID = Integer.parseInt(request.getParameter("orderID"));
-                List<CupCake> details = (List<CupCake>) dao.OrderDetailsUser(orderID);
-                request.setAttribute("details", details);
-                }
-                
-        List<Order> o = dao.AllOrders();
-        request.setAttribute("orders", o);
-        request.getRequestDispatcher("AdminShowOrders.jsp").forward(request, response);
+        Handler handler = new Handler();
 
+        String check = request.getParameter("orderID");
+        if (check != null) {
+            int orderID = Integer.parseInt(request.getParameter("orderID"));
+            List<CupCake> details = (List<CupCake>) handler.OrderDetailsUser(orderID);
+            request.setAttribute("details", details);
+        }
+        List<Order> allOrders = handler.AllOrders();
+        request.setAttribute("orders", allOrders);
+        request.getRequestDispatcher("AdminShowOrders.jsp").forward(request, response);
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

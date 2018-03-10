@@ -17,7 +17,6 @@ public class CupCakeServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
         Handler handler = new Handler();
         List<Bottoms> listOfBottoms = handler.getAllBottoms();
         List<Toppings> listOfToppings = handler.getAllToppings();

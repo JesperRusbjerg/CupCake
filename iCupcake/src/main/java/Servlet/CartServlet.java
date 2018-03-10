@@ -1,9 +1,7 @@
 package Servlet;
 
-import DataAccessObject.DAOCupcake;
 import DataAccessObject.Handler;
 import Entity.CupCake;
-import MyDataSource.CupcakeDataSource;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -17,7 +15,6 @@ import javax.servlet.http.HttpServletResponse;
 public class CartServlet extends HttpServlet {
 
     private List<CupCake> cartlist;
-    DAOCupcake dao = new DAOCupcake(new CupcakeDataSource().getDataSource());
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -25,7 +22,6 @@ public class CartServlet extends HttpServlet {
         Handler handler = new Handler();
         if (request.getSession().getAttribute("cartlist") == null) {
             cartlist = new ArrayList();
-
         } else {
             cartlist = (List<CupCake>) request.getSession().getAttribute("cartlist");
         }
@@ -44,18 +40,12 @@ public class CartServlet extends HttpServlet {
             request.setAttribute("message", "You must order at least 1, and max 100 cupcake to add to cart.");
             request.getRequestDispatcher("CupCakeServlet").forward(request, response);
         } else {
-
             request.setAttribute("message", "CupCake has been succesfully added to your ShoppingCart!");
-
             int bottomprice = handler.bottomPrice(bottomName);
-            int toppingprice = dao.toppingPrice(toppingName);
-
-            CupCake c = new CupCake(bottomName, toppingName, (bottomprice + toppingprice) * amount, amount);
-
-            cartlist.add(c);
-
+            int toppingprice = handler.toppingPrice(toppingName);
+            CupCake cake = new CupCake(bottomName, toppingName, (bottomprice + toppingprice) * amount, amount);
+            cartlist.add(cake);
             request.getSession().setAttribute("cartlist", cartlist);
-
             request.getRequestDispatcher("CupCakeServlet").forward(request, response);
         }
     }

@@ -1,9 +1,8 @@
 package Servlet;
 
-import DataAccessObject.DAOCupcake;
+import DataAccessObject.Handler;
 import Entity.CupCake;
 import Entity.User;
-import MyDataSource.CupcakeDataSource;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -15,11 +14,11 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "PlaceOrderServlet", urlPatterns = {"/PlaceOrderServlet"})
 public class PlaceOrderServlet extends HttpServlet {
 
-    DAOCupcake dao = new DAOCupcake(new CupcakeDataSource().getDataSource());
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
+        Handler handler = new Handler();
         User u = (User) request.getSession().getAttribute("user");
         List<CupCake> c = (List<CupCake>) request.getSession().getAttribute("cartlist");
         int price = 0;
@@ -27,19 +26,15 @@ public class PlaceOrderServlet extends HttpServlet {
             price += cupCake.getPrice();
         }
 
-        dao.addOrder(price, u.getUserID());
-
-        int orderID = dao.getOrderID(u.getUserID());
+        handler.addOrder(price, u.getUserID());
+        int orderID = handler.getOrderID(u.getUserID());
 
         for (CupCake cupCake : c) {
-            dao.addOrderItem(orderID, cupCake.getBottom(), cupCake.getTop(), cupCake.getPrice(), cupCake.getAmount());
+            handler.addOrderItem(orderID, cupCake.getBottom(), cupCake.getTop(), cupCake.getPrice(), cupCake.getAmount());
         }
-
         u.setCredit(u.getCredit() - price);
         request.getSession().setAttribute("user", u);
-
-        dao.setCreditToUser(u, u.getCredit());
-
+        handler.setCreditToUser(u, u.getCredit());
         request.getSession().removeAttribute("cartlist");
         request.getRequestDispatcher("MyPage.jsp").forward(request, response);
     }

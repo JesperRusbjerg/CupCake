@@ -1,7 +1,6 @@
 package Servlet;
 
-import DataAccessObject.DAOCupcake;
-import MyDataSource.CupcakeDataSource;
+import DataAccessObject.Handler;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,24 +11,19 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "AddServlet", urlPatterns = {"/AddServlet"})
 public class AddServlet extends HttpServlet {
 
-    DAOCupcake dao = new DAOCupcake(new CupcakeDataSource().getDataSource());
-
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
+        Handler handler = new Handler();
         String choice = request.getParameter("addSetting");
         String name = request.getParameter("name");
         int price = Integer.parseInt(request.getParameter("price"));
-
         if (choice.equals("toppings")) {
-            dao.addTopping(name, price);
+            handler.addTopping(name, price);
         } else {
-            dao.addBottom(name, price);
+            handler.addBottom(name, price);
         }
-
         request.getRequestDispatcher("Admin.jsp").forward(request, response);
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -1,7 +1,6 @@
 package Servlet;
 
-import DataAccessObject.DAOCupcake;
-import MyDataSource.CupcakeDataSource;
+import DataAccessObject.Handler;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,15 +11,14 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet(name = "AdminEditTotalPrice", urlPatterns = {"/AdminEditTotalPrice"})
 public class AdminEditTotalPrice extends HttpServlet {
 
-    DAOCupcake dao = new DAOCupcake(new CupcakeDataSource().getDataSource());
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
+        Handler handler = new Handler();
         int orderID = Integer.parseInt(request.getParameter("orderID"));
         int price = Integer.parseInt(request.getParameter("price"));
-        dao.updateTotalPrice(price, orderID);
+        handler.updateTotalPrice(price, orderID);
 
         request.getRequestDispatcher("Admin.jsp").forward(request, response);
 

@@ -100,36 +100,6 @@ public class DAOCupcake {
         return true;
     }
 
-//       public List<CupCake> getCupCakes()
-//    {
-//        List<CupCake> cupcakes = new ArrayList();
-//
-//        try
-//        {
-//            dbc.open();
-//
-//            String sql = "select * from cupcakes;";
-//
-//            ResultSet resultset = dbc.query(sql);
-//
-//            while (resultset.next())
-//            {
-//                
-//                String name = resultset.getString("c_name");
-//                int price = resultset.getInt("c_price");
-//
-//                CupCake c = new CupCake(name, price);
-//
-//                cupcakes.add(c);
-//            }
-//        }
-//        catch (SQLException ex)
-//        {
-//            ex.printStackTrace();
-//        }
-//
-//        return cupcakes;
-//    }
     public List<Bottoms> getAllBottoms() {
         List<Bottoms> bottoms = new ArrayList();
 
@@ -210,18 +180,13 @@ public class DAOCupcake {
     public int bottomPrice(String name) {
         int price = 0;
         try {
-
             dbc.open();
-
             String sql = "select b_price from bottoms where b_name =?;";
             PreparedStatement s = dbc.getConnection().prepareStatement(sql);
             s.setString(1, name);
-
             ResultSet resultset = s.executeQuery();
             resultset.next();
-
             price = resultset.getInt("b_price");
-
             s.close();
             dbc.close();
         } catch (SQLException ex) {
@@ -234,77 +199,60 @@ public class DAOCupcake {
     public int toppingPrice(String name) {
         int price = 0;
         try {
-
             dbc.open();
-
             String sql = "select t_price from toppings where t_name =?;";
             PreparedStatement s = dbc.getConnection().prepareStatement(sql);
             s.setString(1, name);
-
             ResultSet resultset = s.executeQuery();
-
             resultset.next();
-
             price = resultset.getInt("t_price");
-
             s.close();
             dbc.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-
         return price;
     }
 
     public void setCreditToUser(User u, int credit) {
         try {
-
             dbc.open();
-
             String sql = "update users set u_credit =? where userID =?;";
             PreparedStatement s = dbc.getConnection().prepareStatement(sql);
             s.setInt(1, credit);
             s.setInt(2, u.getUserID());
             s.executeUpdate();
-
             s.close();
             dbc.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-
     }
 
     public void addOrder(int price, int userID) {
         try {
             dbc.open();
-
             String sql = " INSERT INTO orders VALUES (null,?,?);";
             PreparedStatement s = dbc.getConnection().prepareStatement(sql);
             s.setInt(1, price);
             s.setInt(2, userID);
             s.executeUpdate();
-
             s.close();
             dbc.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-
     }
 
     public int getOrderID(int userID) {
         int index = 0;
         try {
             dbc.open();
-
             String sql = " SELECT orderID from orders where userID =?;";
             PreparedStatement s = dbc.getConnection().prepareStatement(sql);
             s.setInt(1, userID);
             ResultSet resultset = s.executeQuery();
-
             while (resultset.next()) {
-
                 index = resultset.getInt("orderID");
             }
             s.close();
@@ -312,112 +260,95 @@ public class DAOCupcake {
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-
         return index;
     }
 
     public void addOrderItem(int orderID, String bottom, String topping, int cupcakePrice, int amount) {
         try {
             dbc.open();
-
-            String sql = " INSERT INTO orderitems VALUES (null,?,?,?,?,?);";
+            String sql = "INSERT INTO orderitems VALUES (null,?,?,?,?,?);";
             PreparedStatement s = dbc.getConnection().prepareStatement(sql);
             s.setInt(1, orderID);
             s.setString(2, bottom);
             s.setString(3, topping);
             s.setInt(4, cupcakePrice);
             s.setInt(5, amount);
-
             s.executeUpdate();
-
             s.close();
             dbc.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-
     }
 
     public List<Order> showOrdersForUser(int userID) {
-        List<Order> temp = new ArrayList();
+        List<Order> userOrders = new ArrayList();
         try {
-
             dbc.open();
-
             String sql = "select * from orders where userID =?;";
             PreparedStatement s = dbc.getConnection().prepareStatement(sql);
             s.setInt(1, userID);
             ResultSet resultset = s.executeQuery();
-
             while (resultset.next()) {
-
                 int orderID = resultset.getInt("orderID");
                 int userIDd = resultset.getInt("userID");
                 int price = resultset.getInt("totalprice");
                 Order o = new Order(orderID, userIDd, price);
-                temp.add(o);
+                userOrders.add(o);
             }
             s.close();
             dbc.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        return temp;
+        return userOrders;
     }
 
     public List<CupCake> OrderDetailsUser(int orderID) {
-        List<CupCake> temp = new ArrayList();
-
+        List<CupCake> userOrder = new ArrayList();
         try {
-
             dbc.open();
-
             String sql = "select * from orderitems where orderID =?;";
             PreparedStatement s = dbc.getConnection().prepareStatement(sql);
             s.setInt(1, orderID);
             ResultSet resultset = s.executeQuery();
-
             while (resultset.next()) {
-
                 String bottom = resultset.getString("bottom");
                 String topping = resultset.getString("topping");
                 int price = resultset.getInt("cupcakeprice");
                 int amount = resultset.getInt("amountofcakes");
                 CupCake c = new CupCake(bottom, topping, price, amount);
-                temp.add(c);
+                userOrder.add(c);
             }
             s.close();
             dbc.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        return temp;
+        return userOrder;
     }
 
     public List<Order> AllOrders() {
-        List<Order> temp = new ArrayList();
+        List<Order> allOrders = new ArrayList();
         try {
-
             dbc.open();
-
             String sql = "select * from orders";
             ResultSet resultset = dbc.query(sql);
-
             while (resultset.next()) {
-
                 int orderID = resultset.getInt("orderID");
                 int userIDd = resultset.getInt("userID");
                 int price = resultset.getInt("totalprice");
                 Order o = new Order(orderID, userIDd, price);
-                temp.add(o);
+                allOrders.add(o);
             }
             dbc.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        return temp;
+        return allOrders;
     }
 
+    // denne metode bliver ikke brugt??
     public int findOrderItemNumber(int orderID, String bottom, String topping) {
         int found = 0;
         try {
@@ -442,6 +373,7 @@ public class DAOCupcake {
         return found;
     }
 
+    //og heller ikke denne...
     public void updatePrice(int price, int orderitemID) {
 
         try {
@@ -452,7 +384,6 @@ public class DAOCupcake {
             s.setInt(1, price);
             s.setInt(2, orderitemID);
             s.executeUpdate();
-
             s.close();
             dbc.close();
         } catch (SQLException ex) {
@@ -462,90 +393,71 @@ public class DAOCupcake {
     }
 
     public void updateTotalPrice(int price, int orderID) {
-
         try {
             dbc.open();
-
             String sql = "update orders set totalprice=? where orderID=?;";
             PreparedStatement s = dbc.getConnection().prepareStatement(sql);
             s.setInt(1, price);
             s.setInt(2, orderID);
             s.executeUpdate();
-
             s.close();
             dbc.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-
     }
 
     public void addBottom(String name, int price) {
         try {
             dbc.open();
-
             String sql = "INSERT INTO bottoms VALUES (?,?);";
             PreparedStatement s = dbc.getConnection().prepareStatement(sql);
-
             s.setString(1, name);
             s.setInt(2, price);
-
             s.executeUpdate();
-
             s.close();
             dbc.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-
     }
 
     public void addTopping(String name, int price) {
         try {
             dbc.open();
-
             String sql = "INSERT INTO toppings VALUES (?,?);";
             PreparedStatement s = dbc.getConnection().prepareStatement(sql);
-
             s.setString(1, name);
             s.setInt(2, price);
-
             s.executeUpdate();
-
             s.close();
             dbc.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-
     }
 
     public User getUser(String emailaddress) {
-        User x = null;
+        User user = null;
         try {
             dbc.open();
-
             String sql = " SELECT * from users where u_email =?;";
             PreparedStatement s = dbc.getConnection().prepareStatement(sql);
             s.setString(1, emailaddress);
             ResultSet resultset = s.executeQuery();
-
             while (resultset.next()) {
-
                 int userID = resultset.getInt("userID");
                 String email = resultset.getString("u_email");
                 String psw = resultset.getString("u_password");
                 int credit = resultset.getInt("u_credit");
-                x = new User(email, psw, credit, false, userID);
+                user = new User(email, psw, credit, false, userID);
             }
-
             s.close();
             dbc.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-
-        return x;
+        return user;
     }
 
 }

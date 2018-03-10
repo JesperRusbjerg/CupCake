@@ -1,8 +1,7 @@
 package Servlet;
 
-import DataAccessObject.DAOCupcake;
+import DataAccessObject.Handler;
 import Entity.User;
-import MyDataSource.CupcakeDataSource;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -11,14 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 @WebServlet(name = "addCreditServlet", urlPatterns = {"/addCreditServlet"})
-public class addCreditServlet extends HttpServlet {
+public class AddCreditServlet extends HttpServlet {
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
 
         User user = (User) request.getSession().getAttribute("user");
-
+        Handler handler = new Handler();
         int credit = 0;
         try {
             String creditx = request.getParameter("credit");
@@ -39,8 +38,7 @@ public class addCreditServlet extends HttpServlet {
                 user.setCredit(user.getCredit() + credit);
                 request.getSession().setAttribute("user", user);
 
-                DAOCupcake x = new DAOCupcake(new CupcakeDataSource().getDataSource());
-                x.setCreditToUser(user, user.getCredit());
+                handler.setCreditToUser(user, user.getCredit());
                 request.getRequestDispatcher("MyPage.jsp").forward(request, response);
 
             }

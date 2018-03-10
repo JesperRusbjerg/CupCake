@@ -1,9 +1,8 @@
 package Servlet;
 
-import DataAccessObject.DAOCupcake;
+import DataAccessObject.Handler;
 import Entity.Order;
 import Entity.User;
-import MyDataSource.CupcakeDataSource;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -18,15 +17,11 @@ public class ShowOrdersServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
+        Handler handler = new Handler();
         User u = (User) request.getSession().getAttribute("user");
-        DAOCupcake dao = new DAOCupcake(new CupcakeDataSource().getDataSource());
-
-        List<Order> orders = dao.showOrdersForUser(u.getUserID());
-
+        List<Order> orders = handler.showOrdersForUser(u.getUserID());
         request.setAttribute("orders", orders);
         request.getRequestDispatcher("UserOrders.jsp").forward(request, response);
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">

@@ -14,7 +14,7 @@
         <%@include file="Include/MyNavbar.jsp" %>
 
         <%
-            User v = (User) request.getSession().getAttribute("user");
+            User user = (User) request.getSession().getAttribute("user");
         %>
 
         <div class="container-fluid">
@@ -27,8 +27,8 @@
                     <br>
                     <p class="lead"> Here at 'My Page' you can add additional credits, and also see your previous orders.</p>
                     ${message}
-                    <p class="lead"> Your current credits: <% out.print(v.getCredit()); %>   </p>
-                    <form action="addCreditServlet" method="post">
+                    <p class="lead"> Your current credits: <% out.print(user.getCredit()); %>   </p>
+                    <form action="AddCreditServlet" method="post">
                         <div class="form-group">
                             <label for="credit">Enter amount of credits to add:</label>
                             <input type="number" class="form-control" id="credit" name="credit" placeholder="Amount:">
@@ -41,8 +41,8 @@
                         <input type="submit" class="btn btn-primary" value="Show Orders"/><br>
                     </form>
                     <br>
-                    <p class="lead"> Logged in as : <% out.print(v.getName());  %>
-                        <%  if (v.isAdmin()) { %>
+                    <p class="lead"> Logged in as : <% out.print(user.getName());  %>
+                        <%  if (user.isAdmin()) { %>
                     <p class="lead"> Admin Page:
                     <form action="AdminServlet" method="post">
                         <input type="submit" class="btn btn-primary" value="Admin Page"/><br>

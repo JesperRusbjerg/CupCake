@@ -1,9 +1,7 @@
 package Servlet;
 
-import DataAccessObject.DAOCupcake;
 import DataAccessObject.Handler;
 import Entity.User;
-import MyDataSource.CupcakeDataSource;
 import java.io.IOException;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,21 +15,17 @@ public class RegisterServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-
         String emailAddress;
         String password;
-
         try {
             emailAddress = request.getParameter("emailAddress");
             password = request.getParameter("password");
-
-            DAOCupcake dao = new DAOCupcake(new CupcakeDataSource().getDataSource());
             Handler handler = new Handler();
             boolean check = handler.checkIfRegisterable(emailAddress, password);
 
             if (check) {
                 handler.createUser(emailAddress, password, 50);
-                User f = dao.getUser(emailAddress);
+                User f = handler.getUser(emailAddress);
                 request.getSession().setAttribute("user", f);
                 request.getRequestDispatcher("MyPage.jsp").forward(request, response);
             } else {
@@ -42,9 +36,7 @@ public class RegisterServlet extends HttpServlet {
         } catch (Exception e) {
             request.setAttribute("message", "Registration Failed, Please fill out all the data-fields! Enter a valid email adress and a fresh password!");
             request.getRequestDispatcher("Register.jsp").forward(request, response);
-
         }
-
     }
 
     // <editor-fold defaultstate="collapsed" desc="HttpServlet methods. Click on the + sign on the left to edit the code.">
