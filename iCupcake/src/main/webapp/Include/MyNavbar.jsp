@@ -10,7 +10,8 @@
         </li>
         <li class="nav-item active">
             <a class="nav-link" href ="LogoutServlet">Log Out <span class="sr-only">(current)</span></a>
-        </li> <%}
+        </li> 
+        <%}
                 else { %>  <li class="nav-item active">
             <a class="nav-link" href="Login.jsp">Log in <span class="sr-only">(current)</span></a>
         </li> <%}%>
