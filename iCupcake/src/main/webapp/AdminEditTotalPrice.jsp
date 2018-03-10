@@ -12,7 +12,7 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link href="Stylesheet.css" rel="stylesheet" type="text/css"/>
-        <title>JSP Page</title>
+        <title>Edit price</title>
    
     </head>
     <body>
