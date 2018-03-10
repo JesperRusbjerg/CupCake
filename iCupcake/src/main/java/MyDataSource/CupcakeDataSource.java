@@ -11,7 +11,7 @@ public class CupcakeDataSource {
         dataSource.setPort(3306);
         dataSource.setUser("kirsten");
         dataSource.setPassword("kirsten");
-        dataSource.setDatabaseName("cupcakes");
+        dataSource.setDatabaseName("cupcake");
     }
 
     public MysqlDataSource getDataSource() {

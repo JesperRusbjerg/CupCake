@@ -85,7 +85,7 @@ public class DAOCupcake {
     public boolean createUser(String email, String password, int credit) {
         try {
             dbc.open();
-            String sql = "INSERT INTO cupcakes.`users` VALUES (null,?,?,?,false);";
+            String sql = "INSERT INTO users VALUES (null,?,?,?,false);";
             PreparedStatement s = dbc.getConnection().prepareStatement(sql);
             s.setString(1, email);
             s.setString(2, password);
@@ -279,10 +279,10 @@ public class DAOCupcake {
         try {
             dbc.open();
 
-            String sql = " INSERT INTO cupcakes.`orders` VALUES (null,?,?);";
+            String sql = " INSERT INTO orders VALUES (null,?,?);";
             PreparedStatement s = dbc.getConnection().prepareStatement(sql);
-            s.setInt(1, userID);
-            s.setInt(2, price);
+            s.setInt(1, price);
+            s.setInt(2, userID);
             s.executeUpdate();
 
             s.close();
@@ -316,18 +316,17 @@ public class DAOCupcake {
         return index;
     }
 
-    public void addOrderItem(int orderID, int userID, String bottom, String topping, int cupcakePrice, int amount) {
+    public void addOrderItem(int orderID, String bottom, String topping, int cupcakePrice, int amount) {
         try {
             dbc.open();
 
-            String sql = " INSERT INTO cupcakes.`orderitems` VALUES (null,?,?,?,?,?,?);";
+            String sql = " INSERT INTO orderitems VALUES (null,?,?,?,?,?);";
             PreparedStatement s = dbc.getConnection().prepareStatement(sql);
             s.setInt(1, orderID);
-            s.setInt(2, userID);
-            s.setString(3, bottom);
-            s.setString(4, topping);
-            s.setInt(5, cupcakePrice);
-            s.setInt(6, amount);
+            s.setString(2, bottom);
+            s.setString(3, topping);
+            s.setInt(4, cupcakePrice);
+            s.setInt(5, amount);
 
             s.executeUpdate();
 
