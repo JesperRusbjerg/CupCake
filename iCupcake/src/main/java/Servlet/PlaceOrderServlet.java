@@ -20,17 +20,17 @@ public class PlaceOrderServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         Handler handler = new Handler();
         User u = (User) request.getSession().getAttribute("user");
-        List<CupCake> c = (List<CupCake>) request.getSession().getAttribute("cartlist");
+        List<CupCake> cakesInCart = (List<CupCake>) request.getSession().getAttribute("cartlist");
         int price = 0;
-        for (CupCake cupCake : c) {
-            price += cupCake.getPrice();
+        for (CupCake c : cakesInCart) {
+            price += c.getPrice();
         }
 
         handler.addOrder(price, u.getUserID());
         int orderID = handler.getOrderID(u.getUserID());
 
-        for (CupCake cupCake : c) {
-            handler.addOrderItem(orderID, cupCake.getBottom(), cupCake.getTop(), cupCake.getPrice(), cupCake.getAmount());
+        for (CupCake c : cakesInCart) {
+            handler.addOrderItem(orderID, c.getTop(), c.getBottom(), c.getPrice(), c.getAmount());
         }
         u.setCredit(u.getCredit() - price);
         request.getSession().setAttribute("user", u);
