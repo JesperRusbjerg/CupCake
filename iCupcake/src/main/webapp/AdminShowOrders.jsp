@@ -96,8 +96,9 @@
                 </div>
                 <%}%>
             </div>
-            <form action="Admin.jsp" method="post">
-                <br><input type="submit" value="Back to admin page"/>
+            <form action="AdminServlet" method="post">
+                <br>
+                <input type="submit" class="btn btn-success" value="BACK TO ADMIN PAGE">
             </form>
         </div> 
     </body>
