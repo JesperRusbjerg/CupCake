@@ -61,8 +61,8 @@ public class Handler {
         return dao.getOrderID(userID);
     }
     
-    public void addOrderItem(int orderID, String bottom, String topping, int cupcakePrice, int amount){
-        dao.addOrderItem(orderID, bottom, topping, cupcakePrice, amount);
+    public void addOrderItem(int orderID, String topping, String bottom, int cupcakePrice, int amount){
+        dao.addOrderItem(orderID, topping, bottom, cupcakePrice, amount);
     }
     
     public List<Order> showOrdersForUser(int userID){

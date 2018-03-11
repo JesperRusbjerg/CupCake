@@ -15,8 +15,9 @@
 
         <%
             User user = (User) request.getSession().getAttribute("user");
+            
         %>
-
+        
         <div class="container-fluid">
             <div class="row">
                 <div class="col-md-12">
@@ -32,10 +33,10 @@
                     <p class="lead"> Click on 'Shop' to order cupcakes.</p>
                     <br>
                     <p class="lead"> Here at 'My Page' you can add additional credits, and also see your previous orders.</p>
-                    ${message}
                     <p class="lead"> Your current credits: <% out.print(user.getCredit()); %>   </p>
 
                     <form action="AddCreditServlet" method="post">
+                        ${message}
                         <div class="form-group">
                             <label for="credit">Enter amount of credits to add:</label>
                             <input type="number" class="form-control" id="credit" name="credit" placeholder="Amount:">

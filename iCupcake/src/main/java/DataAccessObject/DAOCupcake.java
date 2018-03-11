@@ -263,14 +263,14 @@ public class DAOCupcake {
         return index;
     }
 
-    public void addOrderItem(int orderID, String bottom, String topping, int cupcakePrice, int amount) {
+    public void addOrderItem(int orderID, String topping, String bottom, int cupcakePrice, int amount) {
         try {
             dbc.open();
             String sql = "INSERT INTO orderitems VALUES (null,?,?,?,?,?);";
             PreparedStatement s = dbc.getConnection().prepareStatement(sql);
             s.setInt(1, orderID);
-            s.setString(2, bottom);
-            s.setString(3, topping);
+            s.setString(2, topping);
+            s.setString(3, bottom);
             s.setInt(4, cupcakePrice);
             s.setInt(5, amount);
             s.executeUpdate();
