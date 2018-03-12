@@ -36,7 +36,7 @@ public class CartServlet extends HttpServlet {
         } else {
             amount = Integer.parseInt(request.getParameter("amount"));
         }
-        if (amount <= 0 || amount >= 100) {
+        if (amount <= 0 || amount > 100) {
             request.setAttribute("message", "You must order at least 1, and max 100 cupcake to add to cart.");
             request.getRequestDispatcher("CupCakeServlet").forward(request, response);
         } else {
