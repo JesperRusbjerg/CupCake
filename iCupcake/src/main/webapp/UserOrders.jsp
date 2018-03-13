@@ -12,7 +12,7 @@
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-        <title>JSP Page</title>
+        <title>User Orders</title>
         <link href="Stylesheet.css" rel="stylesheet" type="text/css"/>
     </head>
     <body>
@@ -58,7 +58,7 @@
                             <tr>
                                 <th>Bottom</th>
                                 <th>Topping </th>
-                                <th>Amount of cakes</th>
+                                <th>Quantity of cakes</th>
                                 <th> Price for Cakes</th>
                             </tr>
                         </thead> 
@@ -70,7 +70,7 @@
                             <tr>
                                 <th> <% out.print(elem.getBottom()); %> </th>
                                 <th>  <% out.print(elem.getTop()); %> </th>
-                                <th>  <% out.print(elem.getAmount()); %> </th>
+                                <th>  <% out.print(elem.getQuantity()); %> </th>
                                 <th> <% out.print(elem.getPrice()); %>  </th>
 
                                 <%}%>
