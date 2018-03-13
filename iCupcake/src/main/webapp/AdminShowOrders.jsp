@@ -23,6 +23,10 @@
         <div class="container-fluid">
             <div class="row"> 
                 <div class="col-md-6">
+                    <% if (request.getAttribute("editComplete") != null) {
+                            String editComplete = (String) request.getAttribute("editComplete"); %>
+                    <p class="bg-success text-center"> <% out.print(editComplete); %> </p>
+                    <%}%>
                     <table class="table table-striped">
                         <thead>
                             <tr>
@@ -48,8 +52,8 @@
                                 </th>
 
                                 <th> 
-                                    <form action="AdminEditTotalPrice.jsp" method="post">
-                                        <input type="hidden" name="orderID" value="<%out.print(elem.getOrderID());%>" >
+                                    <form action="AdminShowOrderServlet" method="post">
+                                        <input type="hidden" name="orderIDforEditPrice" value="<%out.print(elem.getOrderID());%>" >
                                         <input type="hidden" name="price" value="<%out.print(elem.getTotalprice());%>" >
                                         <input type="submit" class="btn btn-success" value="EDIT ORDER">
                                     </form>
@@ -60,11 +64,39 @@
                     </table>
                 </div>
 
+                <% if (request.getAttribute("orderIDforEditPrice") != null && request.getAttribute("priceForEdit") != null) {
+                %>
+                <div class="col-md-6">
+                    <%  int orderID = (int) request.getAttribute("orderIDforEditPrice");
+                        int price = (int) request.getAttribute("priceForEdit");
+                    %>
+
+                    <h1>Order to edit:</h1>
+
+                    <p> Order ID: <% out.print(orderID); %>  </p>
+                    <p> Total Price: <% out.print(price); %>  </p>
+
+                    <form action="AdminShowOrderServlet" method="post">
+                        <input type="hidden" name="finalOrderID" value="<%out.print(orderID);%>" />
+                        <input type="number" name="finalPrice" value="<%out.print(price);%>" />
+
+                        <br> <input type="submit" value="EDIT ORDER"/>
+                    </form>       
+
+
+
+                </div>  
+
+
+
+                <%} %>
+
+
                 <% if (request.getAttribute("details") != null) {
 
                 %>
                 <div class="col-md-6">
-
+                    <h1>Order Details:</h1>
                     <table class="table table-striped">
                         <thead>
                             <tr>

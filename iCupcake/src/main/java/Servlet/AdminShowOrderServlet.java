@@ -19,12 +19,29 @@ public class AdminShowOrderServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         Handler handler = new Handler();
 
-        String check = request.getParameter("orderID");
-        if (check != null) {
+        String checkforOrderDetails = request.getParameter("orderID");
+        if (checkforOrderDetails != null) {
             int orderID = Integer.parseInt(request.getParameter("orderID"));
             List<CupCake> details = (List<CupCake>) handler.OrderDetailsUser(orderID);
             request.setAttribute("details", details);
         }
+
+        String checkForEditPrice = request.getParameter("orderIDforEditPrice");
+        if (checkForEditPrice != null) {
+            int orderIDforEditPrice = Integer.parseInt(request.getParameter("orderIDforEditPrice"));
+            int priceForEdit = Integer.parseInt(request.getParameter("price"));
+            request.setAttribute("orderIDforEditPrice", orderIDforEditPrice);
+            request.setAttribute("priceForEdit", priceForEdit);
+        }
+
+        String checkForFinalPrice = request.getParameter("finalPrice");
+        if (checkForFinalPrice != null) {
+            int orderID = Integer.parseInt(request.getParameter("finalOrderID"));
+            int price = Integer.parseInt(request.getParameter("finalPrice"));
+            handler.updateTotalPrice(price, orderID);
+            request.setAttribute("editComplete", "Order " + orderID + " has been succesfully updated, total price now is: " + price);
+        }
+
         List<Order> allOrders = handler.AllOrders();
         request.setAttribute("orders", allOrders);
         request.getRequestDispatcher("AdminShowOrders.jsp").forward(request, response);
