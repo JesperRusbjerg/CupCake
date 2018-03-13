@@ -77,7 +77,7 @@
                             </tr> 
                         </tbody>
                     </table>    
-                    <p> Price for cakes: <% out.print(Integer.parseInt(request.getParameter("totalprice"))); %>  </p>      
+                    <p> Total price: <% out.print(Integer.parseInt(request.getParameter("totalprice"))); %>  </p>      
                 </div>
                 <%}%>
             </div>
