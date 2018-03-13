@@ -48,8 +48,8 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="Amount">Amount:</label>
-                            <input type="number" class="form-control" id="Amount" name="amount" placeholder="Enter amount">
+                            <label for="Quantity">Quantity</label>
+                            <input type="number" class="form-control" id="Quantity" name="quantity" placeholder="Enter quantity">
                             <br>
                             <input type="submit" class="btn btn-primary" value="Add Cupcake to Cart"/><br><br>
                         </div>
@@ -74,7 +74,7 @@
                     <hr class="my-4">
 
                     <c:forEach var="cupcake" items="${cartlist}">
-                        <p class="lead">Amount: ${cupcake.amount} - Bottom: ${cupcake.bottom} + Top: ${cupcake.top} Price: - ${cupcake.price} kr</p> 
+                        <p class="lead">Quantity ${cupcake.quantity} - Bottom: ${cupcake.bottom} + Top: ${cupcake.top} Price: - ${cupcake.price} kr</p> 
                     </c:forEach>
 
                     <%     int totalprice = 0;
