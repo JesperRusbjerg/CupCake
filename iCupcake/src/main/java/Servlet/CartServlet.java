@@ -26,8 +26,8 @@ public class CartServlet extends HttpServlet {
             cartlist = (List<CupCake>) request.getSession().getAttribute("cartlist");
         }
 
-        String bottomName = request.getParameter("selectbottom");
-        String toppingName = request.getParameter("selecttopping");
+        int bottomsID = Integer.parseInt(request.getParameter("selectbottom"));
+        int toppingsID = Integer.parseInt(request.getParameter("selecttopping"));
 
         int quantity = 0;
         if (request.getParameter("quantity").equals("")) {
@@ -41,8 +41,8 @@ public class CartServlet extends HttpServlet {
             request.getRequestDispatcher("CupCakeServlet").forward(request, response);
         } else {
             request.setAttribute("message", "CupCake has been succesfully added to your ShoppingCart!");
-            int bottomprice = handler.bottomPrice(bottomName);
-            int toppingprice = handler.toppingPrice(toppingName);
+            int bottomprice = handler.bottomPrice(bottomsID);
+            int toppingprice = handler.toppingPrice(toppingsID);
             CupCake cake = new CupCake(bottomName, toppingName, (bottomprice + toppingprice) * quantity, quantity);
             cartlist.add(cake);
             request.getSession().setAttribute("cartlist", cartlist);

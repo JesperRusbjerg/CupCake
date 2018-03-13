@@ -32,7 +32,7 @@
                             <select class="custom-select" id="selectbottom" name="selectbottom">
                                 <optgroup label = "Bottoms">
                                     <c:forEach var="bottom" items="${bottoms}">
-                                        <option value="${bottom.name}">${bottom.name} - ${bottom.price} kr </option>
+                                        <option value="${bottom.bottomsID}">${bottom.name} - ${bottom.price} kr </option>
                                     </c:forEach>
                             </select>
                         </div>
@@ -41,7 +41,7 @@
                             <select class="custom-select" id="selecttopping" name="selecttopping">
                                 <optgroup label = "Toppings">
                                     <c:forEach var="topping" items="${toppings}">
-                                        <option value="${topping.name}">${topping.name} - ${topping.price} kr </option>
+                                        <option value="${topping.toppingsID}">${topping.name} - ${topping.price} kr </option>
 
                                     </c:forEach>
                             </select>

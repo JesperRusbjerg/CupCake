@@ -16,8 +16,6 @@ public class Bottoms {
         return bottomsID;
     }
 
-  
-
     public String getName() {
         return name;
     }

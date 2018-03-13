@@ -110,10 +110,10 @@ public class DAOCupcake {
             String sql = "select * from bottoms;";
             ResultSet resultset = dbc.query(sql);
             while (resultset.next()) {
-
+                int bottomsID = resultset.getInt("bottomsID");
                 String name = resultset.getString("b_name");
                 int price = resultset.getInt("b_price");
-                Bottoms b = new Bottoms(name, price);
+                Bottoms b = new Bottoms(bottomsID, name, price);
                 bottoms.add(b);
             }
             dbc.close();
@@ -130,9 +130,10 @@ public class DAOCupcake {
             String sql = "select * from toppings;";
             ResultSet resultset = dbc.query(sql);
             while (resultset.next()) {
+                int toppingsID = resultset.getInt("toppingsID");
                 String name = resultset.getString("t_name");
                 int price = resultset.getInt("t_price");
-                Toppings t = new Toppings(name, price);
+                Toppings t = new Toppings(toppingsID, name, price);
                 toppings.add(t);
             }
             dbc.close();
@@ -180,13 +181,13 @@ public class DAOCupcake {
 
     }
 
-    public int bottomPrice(String name) {
+    public int bottomPrice(int bottomsID) {
         int price = 0;
         try {
             dbc.open();
-            String sql = "select b_price from bottoms where b_name =?;";
+            String sql = "select b_price from bottoms where bottomsID =?;";
             PreparedStatement s = dbc.getConnection().prepareStatement(sql);
-            s.setString(1, name);
+            s.setInt(1, bottomsID);
             ResultSet resultset = s.executeQuery();
             resultset.next();
             price = resultset.getInt("b_price");
@@ -199,13 +200,13 @@ public class DAOCupcake {
         return price;
     }
 
-    public int toppingPrice(String name) {
+    public int toppingPrice(int toppingsID) {
         int price = 0;
         try {
             dbc.open();
-            String sql = "select t_price from toppings where t_name =?;";
+            String sql = "select t_price from toppings where toppingsID =?;";
             PreparedStatement s = dbc.getConnection().prepareStatement(sql);
-            s.setString(1, name);
+            s.setInt(1, toppingsID);
             ResultSet resultset = s.executeQuery();
             resultset.next();
             price = resultset.getInt("t_price");
