@@ -49,7 +49,7 @@
                         </tbody>
                     </table>
                 </div>
-                                <% if (request.getAttribute("details") != null) {
+                <% if (request.getAttribute("details") != null) {
                 %>
                 <div class="col-md-6">
                     <h1> Order Details: </h1>
@@ -72,11 +72,11 @@
                                 <th>  <% out.print(elem.getTopping().getName()); %> </th>
                                 <th>  <% out.print(elem.getQuantity()); %> </th>
                                 <th> <% out.print(elem.getPrice()); %>  </th>
-                                <%}%>
+                                    <%}%>
                             </tr> 
                         </tbody>
                     </table>    
-                    <p> Total price: <% out.print(Integer.parseInt(request.getParameter("totalprice"))); %>  </p>      
+                    <p class="lead"> Total price: <% out.print(Integer.parseInt(request.getParameter("totalprice"))); %>  </p>      
                 </div>
                 <%}%>
             </div>

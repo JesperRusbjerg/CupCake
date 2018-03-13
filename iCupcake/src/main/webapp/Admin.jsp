@@ -34,7 +34,7 @@
                             <select class="custom-select" id="selectUsersAdmin" name="userid">
                                 <option selected disabled>Users</option>
                                 <c:forEach var="user" items="${usersadmin}">
-                                    <option value="${user.userID}"> ${user.name}  </option>
+                                    <option value="${user.userID}"> ${user.username}  </option>
                                 </c:forEach>
                             </select>
                         </div>
@@ -57,10 +57,10 @@
 
                     <%
                         if (request.getSession().getAttribute("user") != null) {
-                            User v = (User) request.getSession().getAttribute("user");
+                            User user = (User) request.getSession().getAttribute("user");
                     %>
-                    <p class="lead"> Logged in as : <% out.print(v.getEmail());  %>
-                    <p class="lead"> Credits: <% out.print(v.getCredit()); %>      
+                    <p class="lead"> Logged in as : <% out.print(user.getEmail());  %>
+                    <p class="lead"> Credits: <% out.print(user.getCredit()); %>      
                         <%}%>
                 </div>
             </div>

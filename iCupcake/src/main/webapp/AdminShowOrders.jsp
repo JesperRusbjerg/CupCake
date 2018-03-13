@@ -60,8 +60,8 @@
                     </table>
                 </div>
 
-           <% if(request.getAttribute("details") != null){
-                            
+                <% if (request.getAttribute("details") != null) {
+
                 %>
                 <div class="col-md-6">
 
@@ -76,23 +76,20 @@
                         </thead> 
                         <tbody>
 
-                            <%
-                            List<CupCake> details = (List<CupCake>) request.getAttribute("details");
-                            for (CupCake elem : details) {
-                    %>
-                            
-                                <tr>
-                                    <th> <% out.print(elem.getBottom()); %> </th>
-                                    <th>  <% out.print(elem.getTop()); %> </th>
-                                    <th>  <% out.print(elem.getQuantity()); %> </th>
-                                    <th> <% out.print(elem.getPrice()); %>  </th>
+                            <%                                List<CupCake> details = (List<CupCake>) request.getAttribute("details");
+                                for (CupCake elem : details) {
+                            %>
 
-                                <%}%>
+                            <tr>
+                                <th> <% out.print(elem.getBottom().getName()); %> </th>
+                                <th>  <% out.print(elem.getTopping().getName()); %> </th>
+                                <th>  <% out.print(elem.getQuantity()); %> </th>
+                                <th> <% out.print(elem.getPrice()); %>  </th>
+                                    <%}%>
                             </tr> 
                         </tbody>
                     </table>    
-
-                    <p> Price for cakes: <% out.print(Integer.parseInt(request.getParameter("totalprice"))); %>  </p>      
+                    <p class="lead"> Total price: <% out.print(Integer.parseInt(request.getParameter("totalprice"))); %>  </p>      
                 </div>
                 <%}%>
             </div>

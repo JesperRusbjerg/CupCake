@@ -325,11 +325,17 @@ public class DAOCupcake {
             ResultSet resultset = s.executeQuery();
             while (resultset.next()) {
                 int bottomsID = resultset.getInt("bottomsID");
+                String b_name = resultset.getString("b_name");
+                int b_price = resultset.getInt("b_price");
+                
                 int toppingsID = resultset.getInt("toppingsID");
+                String t_name = resultset.getString("t_name");
+                int t_price = resultset.getInt("t_price");
+                
                 int price = resultset.getInt("cupcakeprice");
-                int quantity = resultset.getInt("quantityofcakes");
-//                CupCake c = new CupCake(, topping, price, quantity);
-//                userOrder.add(c);
+                int quantity = resultset.getInt("quantity");
+                CupCake c = new CupCake(new Bottoms(bottomsID, b_name, b_price), new Toppings(toppingsID, t_name, t_price), price, quantity);
+                userOrder.add(c);
             }
             s.close();
             dbc.close();
