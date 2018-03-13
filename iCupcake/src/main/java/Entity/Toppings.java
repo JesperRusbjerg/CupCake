@@ -1,7 +1,8 @@
 package Entity;
 
 public class Toppings {
-
+    
+    
     private String name;
     private int price;
 
@@ -10,7 +11,7 @@ public class Toppings {
         this.price = price;
     }
 
-    public String getEmail() {
+    public String getName() {
         return name;
     }
 

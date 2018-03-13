@@ -2,15 +2,15 @@ package Entity;
 
 public class Bottoms {
 
-    String name;
-    int price;
+    private String name;
+    private int price;
 
     public Bottoms(String name, int price) {
         this.name = name;
         this.price = price;
     }
 
-    public String getEmail() {
+    public String getName() {
         return name;
     }
 

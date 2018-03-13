@@ -29,21 +29,21 @@ public class CartServlet extends HttpServlet {
         String bottomName = request.getParameter("selectbottom");
         String toppingName = request.getParameter("selecttopping");
 
-        int amount = 0;
-        if (request.getParameter("amount").equals("")) {
+        int quantity = 0;
+        if (request.getParameter("quantity").equals("")) {
             request.setAttribute("message", "You must order at least 1 or max 50 cupcake to add to cart.");
             request.getRequestDispatcher("CupCakeServlet").forward(request, response);
         } else {
-            amount = Integer.parseInt(request.getParameter("amount"));
+            quantity = Integer.parseInt(request.getParameter("quantity"));
         }
-        if (amount <= 0 || amount > 100) {
+        if (quantity <= 0 || quantity > 100) {
             request.setAttribute("message", "You must order at least 1, and max 100 cupcake to add to cart.");
             request.getRequestDispatcher("CupCakeServlet").forward(request, response);
         } else {
             request.setAttribute("message", "CupCake has been succesfully added to your ShoppingCart!");
             int bottomprice = handler.bottomPrice(bottomName);
             int toppingprice = handler.toppingPrice(toppingName);
-            CupCake cake = new CupCake(bottomName, toppingName, (bottomprice + toppingprice) * amount, amount);
+            CupCake cake = new CupCake(bottomName, toppingName, (bottomprice + toppingprice) * quantity, quantity);
             cartlist.add(cake);
             request.getSession().setAttribute("cartlist", cartlist);
             request.getRequestDispatcher("CupCakeServlet").forward(request, response);
