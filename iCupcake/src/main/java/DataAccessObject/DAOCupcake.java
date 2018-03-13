@@ -83,14 +83,15 @@ public class DAOCupcake {
         return true;
     }
 
-    public boolean createUser(String email, String password, int credit) {
+    public boolean createUser(String username, String email, String password, int credit) {
         try {
             dbc.open();
-            String sql = "INSERT INTO users VALUES (null,?,?,?,false);";
+            String sql = "INSERT INTO users VALUES (null,?,?,?,?,false);";
             PreparedStatement s = dbc.getConnection().prepareStatement(sql);
-            s.setString(1, email);
-            s.setString(2, password);
-            s.setInt(3, credit);
+            s.setString(1, username);
+            s.setString(2, email);
+            s.setString(3, password);
+            s.setInt(4, credit);
             s.executeUpdate();
 
             s.close();

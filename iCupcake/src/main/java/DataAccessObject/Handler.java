@@ -21,8 +21,8 @@ public class Handler {
         return dao.checkIfRegisterable(email, password);
     }
     
-    public boolean createUser(String email, String password, int credit){
-        return dao.createUser(email, password, credit);
+    public boolean createUser(String username, String email, String password, int credit){
+        return dao.createUser(username, email, password, credit);
     }
     
     public List<Bottoms> getAllBottoms(){
