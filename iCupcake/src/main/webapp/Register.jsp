@@ -14,21 +14,23 @@
                     <form action="RegisterServlet" method="post">
                         <br> ${message}
                         <p class="lead">Register form:</p>
-                        <form action="LoginServlet" method="post">
-                            <div class="form-group">
-                                <label for="emailAddress">Email Address:</label>
-                                <input type="text" class="form-control" id="Email" name="emailAddress" placeholder="Enter email address:">
-                            </div>
-                            <div class="form-group">
-                                <label for="password">Password:</label>
-                                <input type="password" class="form-control" id="Password" name="password" placeholder="Enter password:">
-                            </div>
-                            <br>
-                            <p class="lead">Credits: As a free-signup bonus, you get 50 credits to spend on Cupcakes.</p>
-                            <p class="lead">However, you can easily add more under "My page" once logged in!</p>
-                            <input type="hidden" name="credit" value="50"/>
-                            <br><input class="btn btn-primary" type="submit" value="Register"/>
-                        </form>
+                        <div class="form-group">
+                            <label for="username">Username:</label>
+                            <input type="text" class="form-control" id="Username" name="username" placeholder="Enter username:">
+                        </div>
+                        <div class="form-group">
+                            <label for="emailAddress">Email Address:</label>
+                            <input type="text" class="form-control" id="Email" name="emailAddress" placeholder="Enter email address:">
+                        </div>
+                        <div class="form-group">
+                            <label for="password">Password:</label>
+                            <input type="password" class="form-control" id="Password" name="password" placeholder="Enter password:">
+                        </div>
+                        <br>
+                        <p class="lead">Credits: As a free-signup bonus, you get 50 credits to spend on Cupcakes.</p>
+                        <p class="lead">However, you can easily add more under "My page" once logged in!</p>
+                        <input type="hidden" name="credit" value="50"/>
+                        <br><input class="btn btn-primary" type="submit" value="Register"/>
                     </form>
                 </div>
             </div>
