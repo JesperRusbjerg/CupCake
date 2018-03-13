@@ -71,7 +71,7 @@
                                 <th>Bottom</th>
                                 <th>Topping </th>
                                 <th>Quantity of cakes</th>
-                                <th> Price for Cakes</th>
+                                <th> Price for cakes</th>
                             </tr>
                         </thead> 
                         <tbody>
