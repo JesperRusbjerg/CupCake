@@ -41,12 +41,12 @@ public class Handler {
         dao.deleteUser(userID);
     }
     
-    public int bottomPrice(String name){
-        return dao.bottomPrice(name);
+    public int bottomPrice(int bottomsID){
+        return dao.bottomPrice(bottomsID);
     }
     
-    public int toppingPrice(String name){
-        return dao.toppingPrice(name);
+    public int toppingPrice(int toppingsID){
+        return dao.toppingPrice(toppingsID);
     }
     
     public void setCreditToUser(User user, int credit){
@@ -61,8 +61,8 @@ public class Handler {
         return dao.getOrderID(userID);
     }
     
-    public void addOrderItem(int orderID, String topping, String bottom, int cupcakePrice, int quantity){
-        dao.addOrderItem(orderID, topping, bottom, cupcakePrice, quantity);
+    public void addOrderItem(int orderID, int toppingsID, int bottomsID, int cupcakePrice, int quantity){
+        dao.addOrderItem(orderID, toppingsID, bottomsID, cupcakePrice, quantity);
     }
     
     public List<Order> showOrdersForUser(int userID){
