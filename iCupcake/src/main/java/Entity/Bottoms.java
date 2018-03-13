@@ -10,7 +10,7 @@ public class Bottoms {
         this.price = price;
     }
 
-    public String getName() {
+    public String getEmail() {
         return name;
     }
 

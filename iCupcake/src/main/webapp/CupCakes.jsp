@@ -59,7 +59,7 @@
                         if (request.getSession().getAttribute("user") != null) {
                             User v = (User) request.getSession().getAttribute("user");
                     %>
-                    <p class="lead"> Logged in as : <% out.print(v.getName());  %>
+                    <p class="lead"> Logged in as : <% out.print(v.getEmail());  %>
                     <p class="lead"> Credits: <% out.print(v.getCredit()); %>      
                         <%}%>
                 </div>
