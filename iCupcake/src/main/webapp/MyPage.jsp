@@ -51,9 +51,10 @@
                         <input type="submit" class="btn btn-primary" value="Show Orders"/><br>
                     </form>
                     <br>
-                    <p class="lead"> Logged in as : <% out.print(user.getEmail());  %>
+                    <p class="lead"> Logged in as : <% out.print(user.getUsername());  %></p>
+                    <p class="lead"> Email : <% out.print(user.getEmail());  %></p>
                         <%  if (user.isAdmin()) { %>
-                    <p class="lead"> Admin Page:
+                        <p class="lead"> Admin Page:</p>
                     <form action="AdminServlet" method="post">
                         <input type="submit" class="btn btn-primary" value="Admin Page"/><br>
                     </form>

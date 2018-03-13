@@ -57,10 +57,11 @@
                     </form>
                     <%
                         if (request.getSession().getAttribute("user") != null) {
-                            User v = (User) request.getSession().getAttribute("user");
+                            User user = (User) request.getSession().getAttribute("user");
                     %>
-                    <p class="lead"> Logged in as : <% out.print(v.getEmail());  %>
-                    <p class="lead"> Credits: <% out.print(v.getCredit()); %>      
+                    <p class="lead"> Logged in as : <% out.print(user.getUsername());  %>
+                    <p class="lead"> Email : <% out.print(user.getEmail());  %>
+                    <p class="lead"> Credits: <% out.print(user.getCredit()); %>      
                         <%}%>
                 </div>
 
@@ -69,7 +70,8 @@
                     <h1 class="display-4">Shopping Cart:</h1>
                     <p class="lead">There are no items added yet!</p>
 
-                    <% } else {%>
+                    <% }
+                    else {%>
                     <h1 class="display-4">This is your current shoppingcart</h1>
                     <hr class="my-4">
 
@@ -102,9 +104,11 @@
                         <br><input type="submit" class="btn btn-primary" value="Clear Basket!"/>
                     </form>
 
-                    <%} else {%>
+                    <%}
+                    else {%>
                     <p> Your order costs: <% out.print(totalprice); %> . Your account only has <% out.print(v.getCredit()); %> amount of credit.<br> You can add more credit under "My Page"<%}%>
-                        <%} else {%>
+                        <%}
+                        else {%>
                     <p class="alert alert-danger">You are currently not logged in. You must log in to place an order. </p>
                     <%}
                         }%>
