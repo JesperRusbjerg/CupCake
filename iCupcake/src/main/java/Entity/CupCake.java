@@ -2,24 +2,24 @@ package Entity;
 
 public class CupCake {
 
-    private final String bottom;
-    private final String top;
+    private int bottomid;
+    private int toppingid;
     private final int price;
     private int quantity;
 
-    public CupCake(String bottom, String top, int price, int amount) {
-        this.bottom = bottom;
-        this.top = top;
+    public CupCake(int bottomid, int toppingid, int price, int quantity) {
+        this.bottomid = bottomid;
+        this.toppingid = toppingid;
         this.price = price;
-        this.quantity = amount;
+        this.quantity = quantity;
     }
 
-    public String getBottom() {
-        return bottom;
+    public int getBottomid() {
+        return bottomid;
     }
 
-    public String getTop() {
-        return top;
+    public int getToppingid() {
+        return toppingid;
     }
 
     public int getPrice() {
