@@ -17,14 +17,16 @@ public class RegisterServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         String emailAddress;
         String password;
+        String username;
         try {
             emailAddress = request.getParameter("emailAddress");
             password = request.getParameter("password");
+            username = request.getParameter("username");
             Handler handler = new Handler();
             boolean check = handler.checkIfRegisterable(emailAddress, password);
 
             if (check) {
-                handler.createUser(emailAddress, password, 50);
+                handler.createUser(username, emailAddress, password, 50);
                 User f = handler.getUser(emailAddress);
                 request.getSession().setAttribute("user", f);
                 request.getRequestDispatcher("MyPage.jsp").forward(request, response);
