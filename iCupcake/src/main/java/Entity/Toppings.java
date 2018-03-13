@@ -2,7 +2,6 @@ package Entity;
 
 public class Toppings {
     
-    
     private String name;
     private int price;
 

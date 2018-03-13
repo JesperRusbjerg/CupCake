@@ -42,7 +42,6 @@
                                 <optgroup label = "Toppings">
                                     <c:forEach var="topping" items="${toppings}">
                                         <option value="${topping.name}">${topping.name} - ${topping.price} kr </option>
-
                                     </c:forEach>
                             </select>
                         </div>
