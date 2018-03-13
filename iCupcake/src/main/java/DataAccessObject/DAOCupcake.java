@@ -40,10 +40,11 @@ public class DAOCupcake {
             String u_email = resultset.getString("u_email");
             String u_psw = resultset.getString("u_password");
             if (email.equals(u_email) && password.equals(u_psw)) {
+                String u_username = resultset.getString("u_username");
                 int userID = resultset.getInt("userID");
                 int credit = resultset.getInt("u_credit");
                 boolean admin = resultset.getBoolean("admin");
-                res = new User(u_email, u_psw, credit, admin, userID);
+                res = new User(u_username,u_email, u_psw, credit, admin, userID);
             }
             s.close();
             dbc.close();
@@ -147,12 +148,13 @@ public class DAOCupcake {
             String sql = " select * from users;";
             ResultSet resultset = dbc.query(sql);
             while (resultset.next()) {
+                String u_username = resultset.getString("u_username");
                 String u_email = resultset.getString("u_email");
                 String u_psw = resultset.getString("u_password");
                 int credit = resultset.getInt("u_credit");
                 boolean admin = resultset.getBoolean("admin");
                 int id = resultset.getInt("userID");
-                User user = new User(u_email, u_psw, credit, admin, id);
+                User user = new User(u_username,u_email, u_psw, credit, admin, id);
                 listOfUsers.add(user);
             }
             dbc.close();
@@ -446,11 +448,12 @@ public class DAOCupcake {
             s.setString(1, emailaddress);
             ResultSet resultset = s.executeQuery();
             while (resultset.next()) {
+                String username = resultset.getString("u_username");
                 int userID = resultset.getInt("userID");
                 String email = resultset.getString("u_email");
                 String psw = resultset.getString("u_password");
                 int credit = resultset.getInt("u_credit");
-                user = new User(email, psw, credit, false, userID);
+                user = new User(username, email, psw, credit, false, userID);
             }
             s.close();
             dbc.close();
