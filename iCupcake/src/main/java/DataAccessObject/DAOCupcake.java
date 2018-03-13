@@ -83,14 +83,15 @@ public class DAOCupcake {
         return true;
     }
 
-    public boolean createUser(String email, String password, int credit) {
+    public boolean createUser(String username, String email, String password, int credit) {
         try {
             dbc.open();
-            String sql = "INSERT INTO users VALUES (null,?,?,?,false);";
+            String sql = "INSERT INTO users VALUES (null,?,?,?,?,false);";
             PreparedStatement s = dbc.getConnection().prepareStatement(sql);
-            s.setString(1, email);
-            s.setString(2, password);
-            s.setInt(3, credit);
+            s.setString(1, username);
+            s.setString(2, email);
+            s.setString(3, password);
+            s.setInt(4, credit);
             s.executeUpdate();
 
             s.close();
@@ -265,7 +266,7 @@ public class DAOCupcake {
         return index;
     }
 
-    public void addOrderItem(int orderID, String topping, String bottom, int cupcakePrice, int amount) {
+    public void addOrderItem(int orderID, String topping, String bottom, int cupcakePrice, int quantity) {
         try {
             dbc.open();
             String sql = "INSERT INTO orderitems VALUES (null,?,?,?,?,?);";
@@ -274,7 +275,7 @@ public class DAOCupcake {
             s.setString(2, topping);
             s.setString(3, bottom);
             s.setInt(4, cupcakePrice);
-            s.setInt(5, amount);
+            s.setInt(5, quantity);
             s.executeUpdate();
             s.close();
             dbc.close();
@@ -318,8 +319,8 @@ public class DAOCupcake {
                 String bottom = resultset.getString("bottom");
                 String topping = resultset.getString("topping");
                 int price = resultset.getInt("cupcakeprice");
-                int amount = resultset.getInt("amountofcakes");
-                CupCake c = new CupCake(bottom, topping, price, amount);
+                int quantity = resultset.getInt("quantityofcakes");
+                CupCake c = new CupCake(bottom, topping, price, quantity);
                 userOrder.add(c);
             }
             s.close();

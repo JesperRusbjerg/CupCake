@@ -20,6 +20,7 @@ public class ShowOrdersServlet extends HttpServlet {
         response.setContentType("text/html;charset=UTF-8");
         Handler handler = new Handler();
         
+        //dette checker om der er trykket på 'order details'
         String check = request.getParameter("orderID");
         if (check != null) {
             int orderID = Integer.parseInt(request.getParameter("orderID"));
@@ -27,7 +28,7 @@ public class ShowOrdersServlet extends HttpServlet {
             request.setAttribute("details", details);
         }
         
-        
+        //dette viser en generel liste over brugerens tidligere ordrer
         User u = (User) request.getSession().getAttribute("user");
         List<Order> orders = handler.showOrdersForUser(u.getUserID());
         request.setAttribute("orders", orders);

@@ -21,8 +21,8 @@ public class Handler {
         return dao.checkIfRegisterable(email, password);
     }
     
-    public boolean createUser(String email, String password, int credit){
-        return dao.createUser(email, password, credit);
+    public boolean createUser(String username, String email, String password, int credit){
+        return dao.createUser(username, email, password, credit);
     }
     
     public List<Bottoms> getAllBottoms(){
@@ -61,8 +61,8 @@ public class Handler {
         return dao.getOrderID(userID);
     }
     
-    public void addOrderItem(int orderID, String topping, String bottom, int cupcakePrice, int amount){
-        dao.addOrderItem(orderID, topping, bottom, cupcakePrice, amount);
+    public void addOrderItem(int orderID, String topping, String bottom, int cupcakePrice, int quantity){
+        dao.addOrderItem(orderID, topping, bottom, cupcakePrice, quantity);
     }
     
     public List<Order> showOrdersForUser(int userID){

@@ -10,7 +10,7 @@ public class Toppings {
         this.price = price;
     }
 
-    public String getName() {
+    public String getEmail() {
         return name;
     }
 

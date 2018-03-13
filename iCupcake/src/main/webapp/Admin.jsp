@@ -18,7 +18,7 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <link href="Stylesheet.css" rel="stylesheet" type="text/css"/>
-        <title>JSP Page</title>
+        <title>Admin</title>
 
     </head>
     <body>
@@ -59,7 +59,7 @@
                         if (request.getSession().getAttribute("user") != null) {
                             User v = (User) request.getSession().getAttribute("user");
                     %>
-                    <p class="lead"> Logged in as : <% out.print(v.getName());  %>
+                    <p class="lead"> Logged in as : <% out.print(v.getEmail());  %>
                     <p class="lead"> Credits: <% out.print(v.getCredit()); %>      
                         <%}%>
                 </div>
