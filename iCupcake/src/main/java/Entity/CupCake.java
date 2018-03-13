@@ -4,7 +4,7 @@ public class CupCake {
 
     private Bottoms bottom;
     private Toppings topping;
-    private final int price;
+    private int price;
     private int quantity;
 
     public CupCake(Bottoms bottom, Toppings topping, int price, int quantity) {
@@ -28,5 +28,13 @@ public class CupCake {
 
     public int getQuantity() {
         return quantity;
+    }
+
+    public void setPrice(int price) {
+        this.price = price;
+    }
+
+    public void setQuantity(int quantity) {
+        this.quantity = quantity;
     }
 }

@@ -24,7 +24,8 @@ public class CartServlet extends HttpServlet {
         Handler handler = new Handler();
         if (request.getSession().getAttribute("cartlist") == null) {
             cartlist = new ArrayList();
-        } else {
+        }
+        else {
             cartlist = (List<CupCake>) request.getSession().getAttribute("cartlist");
         }
 
@@ -35,18 +36,35 @@ public class CartServlet extends HttpServlet {
         if (request.getParameter("quantity").equals("")) {
             request.setAttribute("message", "You must order at least 1 or max 50 cupcake to add to cart.");
             request.getRequestDispatcher("CupCakeServlet").forward(request, response);
-        } else {
+        }
+        else {
             quantity = Integer.parseInt(request.getParameter("quantity"));
         }
         if (quantity <= 0 || quantity > 100) {
             request.setAttribute("message", "You must order at least 1, and max 100 cupcake to add to cart.");
             request.getRequestDispatcher("CupCakeServlet").forward(request, response);
-        } else {
+        }
+        else {
             request.setAttribute("message", "CupCake has been succesfully added to your ShoppingCart!");
-            Bottoms bottom = handler.findBottom(bottomsID);
-            Toppings topping = handler.findTopping(toppingsID);
-            CupCake cake = new CupCake(bottom, topping, (bottom.getPrice() + topping.getPrice()) * quantity, quantity);
-            cartlist.add(cake);
+            boolean updated = false;
+            for (CupCake cupCake : cartlist) {
+                int b_ID = cupCake.getBottom().getBottomsID();
+                int t_ID = cupCake.getTopping().getToppingsID();
+                if (b_ID == bottomsID && t_ID == toppingsID) {
+                    int totalPrice = cupCake.getPrice();
+                    int b_price = cupCake.getBottom().getPrice();
+                    int t_price = cupCake.getTopping().getPrice();
+                    cupCake.setPrice(totalPrice + ((b_price + t_price) * quantity));
+                    cupCake.setQuantity(cupCake.getQuantity() + quantity);
+                    updated = true;
+                }
+            }
+            if (!updated) {
+                Bottoms bottom = handler.findBottom(bottomsID);
+                Toppings topping = handler.findTopping(toppingsID);
+                CupCake cake = new CupCake(bottom, topping, (bottom.getPrice() + topping.getPrice()) * quantity, quantity);
+                cartlist.add(cake);
+            }
             request.getSession().setAttribute("cartlist", cartlist);
             request.getRequestDispatcher("CupCakeServlet").forward(request, response);
         }
