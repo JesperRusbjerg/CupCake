@@ -41,12 +41,7 @@
                             <select class="custom-select" id="selecttopping" name="selecttopping">
                                 <optgroup label = "Toppings">
                                     <c:forEach var="topping" items="${toppings}">
-<<<<<<< HEAD
-                                        <option value="${topping.name}">${topping.name} - ${topping.price} kr </option>
-=======
                                         <option value="${topping.toppingsID}">${topping.name} - ${topping.price} kr </option>
-
->>>>>>> 120292d38c2fbd7426dd9e34d7b58f92f1c4bd19
                                     </c:forEach>
                             </select>
                         </div>
@@ -80,7 +75,7 @@
                     <hr class="my-4">
 
                     <c:forEach var="cupcake" items="${cartlist}">
-                        <p class="lead">Quantity ${cupcake.quantity} - Bottom: ${cupcake.bottom} + Top: ${cupcake.top} Price: - ${cupcake.price} kr</p> 
+                        <p class="lead">Quantity ${cupcake.quantity} - Bottom: ${cupcake.bottom.name} + Top: ${cupcake.topping.name} Price: - ${cupcake.price} kr</p> 
                     </c:forEach>
 
                     <%     int totalprice = 0;

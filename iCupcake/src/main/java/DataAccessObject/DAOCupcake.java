@@ -181,41 +181,45 @@ public class DAOCupcake {
 
     }
 
-    public int bottomPrice(int bottomsID) {
-        int price = 0;
+    public Bottoms findBottom(int bottomsID) {
+        Bottoms res = null;
         try {
             dbc.open();
-            String sql = "select b_price from bottoms where bottomsID =?;";
+            String sql = "select * from bottoms where bottomsID =?;";
             PreparedStatement s = dbc.getConnection().prepareStatement(sql);
             s.setInt(1, bottomsID);
             ResultSet resultset = s.executeQuery();
             resultset.next();
-            price = resultset.getInt("b_price");
+            String name = resultset.getString("b_name");
+            int price = resultset.getInt("b_price");
+            res = new Bottoms(bottomsID, name, price);
             s.close();
             dbc.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
 
-        return price;
+        return res;
     }
 
-    public int toppingPrice(int toppingsID) {
-        int price = 0;
+    public Toppings findTopping(int toppingsID) {
+        Toppings res = null;
         try {
             dbc.open();
-            String sql = "select t_price from toppings where toppingsID =?;";
+            String sql = "select * from toppings where toppingsID =?;";
             PreparedStatement s = dbc.getConnection().prepareStatement(sql);
             s.setInt(1, toppingsID);
             ResultSet resultset = s.executeQuery();
             resultset.next();
-            price = resultset.getInt("t_price");
+            String name = resultset.getString("t_name");
+            int price = resultset.getInt("t_price");
+            res = new Toppings(toppingsID, name, price);
             s.close();
             dbc.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        return price;
+        return res;
     }
 
     public void setCreditToUser(User u, int credit) {
@@ -312,16 +316,19 @@ public class DAOCupcake {
         List<CupCake> userOrder = new ArrayList();
         try {
             dbc.open();
-            String sql = "select * from orderitems where orderID =?;";
+            String sql = "SELECT * FROM cupcake.orderitems, bottoms, toppings "
+                    + "where bottoms.bottomsID = orderitems.bottomsID "
+                    + "and toppings.toppingsID = orderitems.toppingsID "
+                    + "and orderitems.orderID=?;";
             PreparedStatement s = dbc.getConnection().prepareStatement(sql);
             s.setInt(1, orderID);
             ResultSet resultset = s.executeQuery();
             while (resultset.next()) {
-                String bottom = resultset.getString("bottom");
-                String topping = resultset.getString("topping");
+                int bottomsID = resultset.getInt("bottomsID");
+                int toppingsID = resultset.getInt("toppingsID");
                 int price = resultset.getInt("cupcakeprice");
                 int quantity = resultset.getInt("quantityofcakes");
-//                CupCake c = new CupCake(bottom, topping, price, quantity);
+//                CupCake c = new CupCake(, topping, price, quantity);
 //                userOrder.add(c);
             }
             s.close();

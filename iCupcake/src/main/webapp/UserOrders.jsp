@@ -68,11 +68,10 @@
                                 for (CupCake elem : details) {
                             %>
                             <tr>
-                                <th> <% out.print(elem.getBottom()); %> </th>
-                                <th>  <% out.print(elem.getTop()); %> </th>
+                                <th> <% out.print(elem.getBottom().getName()); %> </th>
+                                <th>  <% out.print(elem.getTopping().getName()); %> </th>
                                 <th>  <% out.print(elem.getQuantity()); %> </th>
                                 <th> <% out.print(elem.getPrice()); %>  </th>
-
                                 <%}%>
                             </tr> 
                         </tbody>

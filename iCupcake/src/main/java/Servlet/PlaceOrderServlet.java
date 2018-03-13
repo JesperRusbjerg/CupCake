@@ -30,7 +30,7 @@ public class PlaceOrderServlet extends HttpServlet {
         int orderID = handler.getOrderID(u.getUserID());
 
         for (CupCake c : cakesInCart) {
-            handler.addOrderItem(orderID, c.getToppingsID(), c.getBottomsID(), c.getPrice(), c.getQuantity());
+            handler.addOrderItem(orderID, c.getTopping().getToppingsID(), c.getBottom().getBottomsID(), c.getPrice(), c.getQuantity());
         }
         u.setCredit(u.getCredit() - price);
         request.getSession().setAttribute("user", u);

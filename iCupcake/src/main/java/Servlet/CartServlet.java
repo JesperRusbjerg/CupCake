@@ -1,7 +1,9 @@
 package Servlet;
 
 import DataAccessObject.Handler;
+import Entity.Bottoms;
 import Entity.CupCake;
+import Entity.Toppings;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
@@ -41,9 +43,9 @@ public class CartServlet extends HttpServlet {
             request.getRequestDispatcher("CupCakeServlet").forward(request, response);
         } else {
             request.setAttribute("message", "CupCake has been succesfully added to your ShoppingCart!");
-            int bottomprice = handler.bottomPrice(bottomsID);
-            int toppingprice = handler.toppingPrice(toppingsID);
-            CupCake cake = new CupCake(bottomsID, toppingsID, (bottomprice + toppingprice) * quantity, quantity);
+            Bottoms bottom = handler.findBottom(bottomsID);
+            Toppings topping = handler.findTopping(toppingsID);
+            CupCake cake = new CupCake(bottom, topping, (bottom.getPrice() + topping.getPrice()) * quantity, quantity);
             cartlist.add(cake);
             request.getSession().setAttribute("cartlist", cartlist);
             request.getRequestDispatcher("CupCakeServlet").forward(request, response);

@@ -41,12 +41,12 @@ public class Handler {
         dao.deleteUser(userID);
     }
     
-    public int bottomPrice(int bottomsID){
-        return dao.bottomPrice(bottomsID);
+    public Bottoms findBottom(int bottomsID){
+        return dao.findBottom(bottomsID);
     }
     
-    public int toppingPrice(int toppingsID){
-        return dao.toppingPrice(toppingsID);
+    public Toppings findTopping(int toppingsID){
+        return dao.findTopping(toppingsID);
     }
     
     public void setCreditToUser(User user, int credit){
