@@ -365,50 +365,6 @@ public class DAOCupcake {
         return allOrders;
     }
 
-    // denne metode bliver ikke brugt??
-    public int findOrderItemNumber(int orderID, String bottom, String topping) {
-        int found = 0;
-        try {
-            dbc.open();
-            String sql = "select orderitemID from orderitems where orderID =? and bottom =? and topping =?;";
-            PreparedStatement s = dbc.getConnection().prepareStatement(sql);
-            s.setInt(1, orderID);
-            s.setString(2, bottom);
-            s.setString(3, topping);
-
-            ResultSet resultset = s.executeQuery();
-
-            if (resultset.next()) {
-
-                found = resultset.getInt("orderitemID");
-            }
-            s.close();
-            dbc.close();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-        return found;
-    }
-
-    //og heller ikke denne...
-    public void updatePrice(int price, int orderitemID) {
-
-        try {
-            dbc.open();
-
-            String sql = "update orderitems set cupcakeprice=? where orderitemID=?;";
-            PreparedStatement s = dbc.getConnection().prepareStatement(sql);
-            s.setInt(1, price);
-            s.setInt(2, orderitemID);
-            s.executeUpdate();
-            s.close();
-            dbc.close();
-        } catch (SQLException ex) {
-            ex.printStackTrace();
-        }
-
-    }
-
     public void updateTotalPrice(int price, int orderID) {
         try {
             dbc.open();

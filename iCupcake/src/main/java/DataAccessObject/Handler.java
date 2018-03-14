@@ -77,15 +77,6 @@ public class Handler {
         return dao.AllOrders();
     }
     
-    //denne metode bliver ikke brugt??
-    public int findOrderItemNumber(int orderID, String bottom, String topping){
-        return dao.findOrderItemNumber(orderID, bottom, topping);
-    }
-     //og heller ikke denne...
-    public void updatePrice(int price, int orderitemID){
-        dao.updatePrice(price, orderitemID);
-    }
-    
     public void updateTotalPrice(int price, int orderID){
         dao.updateTotalPrice(price, orderID);
     }
