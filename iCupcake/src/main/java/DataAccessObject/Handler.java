@@ -13,6 +13,13 @@ public class Handler {
     
     private DAOCupcake dao = new DAOCupcake(new CupcakeDataSource().getDataSource());
     
+    
+    /**
+     * is described in DAO: {@link  DAOCupcake#loginAuthentication(java.lang.String, java.lang.String)}
+     * @param email
+     * @param password
+     * @return 
+     */
     public User loginAuthentication(String email, String password){
         return dao.loginAuthentication(email, password);
     }
