@@ -22,7 +22,7 @@
         <div class="container-fluid">
             <div class="row"> 
                 <div class="col-md-6">
-                    <h1 class="display-4">ALL ORDERS:</h1>
+                    <h1 class="display-4">All orders:</h1>
                     <% if (request.getAttribute("editComplete") != null) {
                             String editComplete = (String) request.getAttribute("editComplete"); %>
                     <p class="bg-success text-center"> <% out.print(editComplete); %> </p>
@@ -97,7 +97,8 @@
                 
                 %>
                 <div class="col-md-6">
-                    <h1>Order Details: for User: <% out.print(u.getUsername()); %>, ID: <% out.print(u.getUserID()); %> </h1>
+                    <h1 class="display-4">>Order Details: for User: <% out.print(u.getUsername()); %>, ID: <% out.print(u.getUserID()); %> </h1>
+
                     <table class="table table-striped">
                         <thead>
                             <tr>
