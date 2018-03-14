@@ -237,6 +237,11 @@ public class DAOCupcake {
         }
     }
 
+    /**
+     * Adds order to the SQL database.
+     * @param price is calculated in the PlaceOrderServlet.
+     * @param userID always 1 or higher. Is the ID of the user in the given session.
+     */
     public void addOrder(int price, int userID) {
         try {
             dbc.open();
@@ -252,25 +257,38 @@ public class DAOCupcake {
         }
     }
 
+    /**
+     * Returns an int that represents a orderID based on a userID.
+     * @param userID always 1 or higher. Is the ID of the user in the given session.
+     * @return int orderID of the last order the user of the given userID made.
+     */
     public int getOrderID(int userID) {
-        int index = 0;
+        int orderID = 0;
         try {
             dbc.open();
-            String sql = " SELECT orderID from orders where userID =?;";
+            String sql = "SELECT orderID from orders where userID =?;";
             PreparedStatement s = dbc.getConnection().prepareStatement(sql);
             s.setInt(1, userID);
             ResultSet resultset = s.executeQuery();
-            while (resultset.next()) {
-                index = resultset.getInt("orderID");
-            }
+            resultset.last();
+            orderID = resultset.getInt("orderID");
             s.close();
             dbc.close();
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-        return index;
+        return orderID;
     }
 
+    /**
+     * Inserts an orderitem to the database.
+     * All orderitems are attached to a specific order.
+     * @param orderID alwasys 1 or higher.
+     * @param toppingsID alwasys 1 or higher.
+     * @param bottomsID alwasys 1 or higher.
+     * @param cupcakePrice never supposed to be a negative number.
+     * @param quantity always 1 or higher.
+     */
     public void addOrderItem(int orderID, int toppingsID, int bottomsID, int cupcakePrice, int quantity) {
         try {
             dbc.open();
@@ -289,6 +307,12 @@ public class DAOCupcake {
         }
     }
 
+    /**
+     * Finds all orders for the given userID.
+     * The list is used to show the user all of her/his orders if there are any.
+     * @param userID given UserID of the UserID in the current session, always 1 or higher.
+     * @return returns List of Orders. Can be null. ( If no orders are placed as of yet ) 
+     */
     public List<Order> showOrdersForUser(int userID) {
         List<Order> userOrders = new ArrayList();
         try {
@@ -312,6 +336,12 @@ public class DAOCupcake {
         return userOrders;
     }
 
+    /**
+     * Returns a list of cupcakes, for a given orderID.
+     * This list is shown to the user, in his orderdetails.
+     * @param orderID this is the ID you give, to get the list of cakes for given ID. ID always 1 or higher.
+     * @return List of cupcakes.
+     */
     public List<CupCake> OrderDetailsUser(int orderID) {
         List<CupCake> userOrder = new ArrayList();
         try {
@@ -345,6 +375,10 @@ public class DAOCupcake {
         return userOrder;
     }
 
+    /**
+     * Makes a list of all orders in the SQL database.
+     * @return a list of all orders in the database
+     */
     public List<Order> AllOrders() {
         List<Order> allOrders = new ArrayList();
         try {
@@ -365,6 +399,12 @@ public class DAOCupcake {
         return allOrders;
     }
 
+    /**
+     * Updates the total price of an order.
+     * Voidtype method that updates the total price of an order in the SQL database.
+     * @param price userinput
+     * @param orderID is always 1 or higher.
+     */
     public void updateTotalPrice(int price, int orderID) {
         try {
             dbc.open();
@@ -380,6 +420,12 @@ public class DAOCupcake {
         }
     }
 
+    /**
+     * Inserts a Bottom to the SQL database.
+     * Voidtype method that inserts a new Bottom to the SQL database, using String name and int price.
+     * @param name cannot be null.
+     * @param price 
+     */
     public void addBottom(String name, int price) {
         try {
             dbc.open();
@@ -395,6 +441,12 @@ public class DAOCupcake {
         }
     }
 
+    /**
+     * Inserts a Topping to the SQL database.
+     * Voidtype method that inserts a new Topping to the SQL database, using String name and int price.
+     * @param name cannot be null.
+     * @param price 
+     */
     public void addTopping(String name, int price) {
         try {
             dbc.open();
@@ -410,6 +462,12 @@ public class DAOCupcake {
         }
     }
 
+    /**
+     * Returns a user from the database.
+     * Finds a user in the SQL database using a String emailaddress.
+     * @param emailaddress The parameter cannot be.
+     * @return should return a user, that isn't null.
+     */
     public User getUser(String emailaddress) {
         User user = null;
         try {
@@ -434,6 +492,12 @@ public class DAOCupcake {
         return user;
     }
     
+    /**
+     * Returns a user from the database.
+     * Finds a user in the SQL database using an int userID.
+     * @param userID The parameter is always 1 or higher.
+     * @return should return a user, that isn't null.
+     */
     public User getUser(int userID){
         User user = null;
         try {
@@ -455,9 +519,5 @@ public class DAOCupcake {
             ex.printStackTrace();
         }
         return user;
-        
-        
     }
-    
-    
 }
