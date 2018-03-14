@@ -94,7 +94,7 @@
 
                 %>
                 <div class="col-md-6">
-                    <h1>Order Details:</h1>
+                    <h1 class="display-4">Order Details:</h1>
                     <table class="table table-striped">
                         <thead>
                             <tr>
