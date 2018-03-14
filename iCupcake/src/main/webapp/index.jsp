@@ -27,7 +27,7 @@
                 </div>
                 <div class="col-md-6">
                     <img class="regdiv2" src="cupcakes.jpg" alt="Cupcake picture">
-                    <p class="lead"> Pick between a varity of delicious cupcakes.. Just head to "Shop" to see the different flavors</p>
+                    <p class="lead"> Pick between a variety of delicious cupcakes.. Just head to "Shop" to see the different flavors</p>
                 </div>
             </div>
         </div>
