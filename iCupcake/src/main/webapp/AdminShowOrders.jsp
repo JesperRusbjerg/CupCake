@@ -19,10 +19,10 @@
     <body>
 
         <%@include file="Include/MyNavbar.jsp" %>
-        <h1>ALL ORDERS:</h1>
         <div class="container-fluid">
             <div class="row"> 
                 <div class="col-md-6">
+                    <h1 class="display-4">ALL ORDERS:</h1>
                     <% if (request.getAttribute("editComplete") != null) {
                             String editComplete = (String) request.getAttribute("editComplete"); %>
                     <p class="bg-success text-center"> <% out.print(editComplete); %> </p>
@@ -71,20 +71,18 @@
                         int price = (int) request.getAttribute("priceForEdit");
                     %>
 
-                    <h1>Order to edit:</h1>
+                    <h1 class="display-4">Order to edit:</h1>
 
-                    <p> Order ID: <% out.print(orderID); %>  </p>
-                    <p> Total Price: <% out.print(price); %>  </p>
+                    <p class="lead"> Order ID: <% out.print(orderID); %>  </p>
+                    <p class="lead"> Total Price: <% out.print(price); %>  </p>
+                    <div class="form-group">
+                        <form action="AdminShowOrderServlet" method="post">
+                            <input type="hidden" name="finalOrderID" value="<%out.print(orderID);%>" />
+                            <input class="form-control" type="number" name="finalPrice" value="<%out.print(price);%>" />
 
-                    <form action="AdminShowOrderServlet" method="post">
-                        <input type="hidden" name="finalOrderID" value="<%out.print(orderID);%>" />
-                        <input type="number" name="finalPrice" value="<%out.print(price);%>" />
-
-                        <br> <input type="submit" value="EDIT ORDER"/>
-                    </form>       
-
-
-
+                            <br> <input class="btn btn-primary" type="submit" value="EDIT ORDER"/>
+                        </form>    
+                    </div>
                 </div>  
 
 
