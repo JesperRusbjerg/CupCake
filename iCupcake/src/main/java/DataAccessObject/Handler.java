@@ -24,13 +24,29 @@ public class Handler {
         return dao.loginAuthentication(email, password);
     }
     
+    /**
+     * is described in DAO: {@link  DAOCupcake#checkIfRegisterable(java.lang.String, java.lang.String) }
+     * @param email
+     * @param password
+     * @return 
+     */
     public boolean checkIfRegisterable(String email, String password){
         return dao.checkIfRegisterable(email, password);
     }
     
+    
+    /**
+     * is described in DAO: {@link  DAOCupcake#createUser(java.lang.String, java.lang.String, java.lang.String, int) }
+     * @param username
+     * @param email
+     * @param password
+     * @param credit
+     * @return 
+     */
     public boolean createUser(String username, String email, String password, int credit){
         return dao.createUser(username, email, password, credit);
     }
+    
     
     public List<Bottoms> getAllBottoms(){
         return dao.getAllBottoms();
