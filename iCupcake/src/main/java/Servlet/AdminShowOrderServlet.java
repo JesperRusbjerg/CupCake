@@ -3,6 +3,7 @@ package Servlet;
 import DataAccessObject.Handler;
 import Entity.CupCake;
 import Entity.Order;
+import Entity.User;
 import java.io.IOException;
 import java.util.List;
 import javax.servlet.ServletException;
@@ -22,7 +23,10 @@ public class AdminShowOrderServlet extends HttpServlet {
         String checkforOrderDetails = request.getParameter("orderID");
         if (checkforOrderDetails != null) {
             int orderID = Integer.parseInt(request.getParameter("orderID"));
+            int userID = Integer.parseInt(request.getParameter("userID"));
             List<CupCake> details = (List<CupCake>) handler.OrderDetailsUser(orderID);
+            User u = handler.getUser(userID);
+            request.setAttribute("user", u);
             request.setAttribute("details", details);
         }
 
@@ -30,6 +34,9 @@ public class AdminShowOrderServlet extends HttpServlet {
         if (checkOrderIDForEditPrice != null) {
             int orderIDforEditPrice = Integer.parseInt(request.getParameter("orderIDforEditPrice"));
             int priceForEdit = Integer.parseInt(request.getParameter("price"));
+             int userID = Integer.parseInt(request.getParameter("userID"));
+            User u = handler.getUser(userID);
+            request.setAttribute("user", u);
             request.setAttribute("orderIDforEditPrice", orderIDforEditPrice);
             request.setAttribute("priceForEdit", priceForEdit);
         }

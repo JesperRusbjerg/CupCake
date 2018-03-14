@@ -478,4 +478,30 @@ public class DAOCupcake {
         return user;
     }
     
+    public User getUser(int userID){
+        User user = null;
+        try {
+            dbc.open();
+            String sql = " SELECT * from users where userID =?;";
+            PreparedStatement s = dbc.getConnection().prepareStatement(sql);
+            s.setInt(1, userID);
+            ResultSet resultset = s.executeQuery();
+            while (resultset.next()) {
+                String username = resultset.getString("u_username");
+                String email = resultset.getString("u_email");
+                String psw = resultset.getString("u_password");
+                int credit = resultset.getInt("u_credit");
+                user = new User(username, email, psw, credit, false, userID);
+            }
+            s.close();
+            dbc.close();
+        } catch (SQLException ex) {
+            ex.printStackTrace();
+        }
+        return user;
+        
+        
+    }
+    
+    
 }

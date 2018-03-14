@@ -100,5 +100,10 @@ public class Handler {
     
     public User getUser(String emailaddress){
         return dao.getUser(emailaddress);
+    
+       
     }
+     public User getUser(int userID){
+        return dao.getUser(userID);
+     }
 }

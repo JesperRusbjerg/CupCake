@@ -55,6 +55,7 @@
                                     <form action="AdminShowOrderServlet" method="post">
                                         <input type="hidden" name="orderIDforEditPrice" value="<%out.print(elem.getOrderID());%>" >
                                         <input type="hidden" name="price" value="<%out.print(elem.getTotalprice());%>" >
+                                        <input type="hidden" name="userID" value="<% out.print(elem.getUserID()); %>" >
                                         <input type="submit" class="btn btn-success" value="EDIT ORDER">
                                     </form>
                                 </th>
@@ -69,9 +70,10 @@
                 <div class="col-md-6">
                     <%  int orderID = (int) request.getAttribute("orderIDforEditPrice");
                         int price = (int) request.getAttribute("priceForEdit");
+                        User u = (User) request.getAttribute("user");
                     %>
 
-                    <h1 class="display-4">Order to edit:</h1>
+                    <h1 class="display-4">Order to edit for User: <% out.print(u.getUsername()); %>, ID: <% out.print(u.getUserID()); %></h1>
 
                     <p class="lead"> Order ID: <% out.print(orderID); %>  </p>
                     <p class="lead"> Total Price: <% out.print(price); %>  </p>
@@ -91,10 +93,11 @@
 
 
                 <% if (request.getAttribute("details") != null) {
-
+                     User u = (User) request.getAttribute("user");
+                
                 %>
                 <div class="col-md-6">
-                    <h1>Order Details:</h1>
+                    <h1>Order Details: for User: <% out.print(u.getUsername()); %>, ID: <% out.print(u.getUserID()); %> </h1>
                     <table class="table table-striped">
                         <thead>
                             <tr>
