@@ -18,7 +18,7 @@
                     <br>
                     <p class="lead"> This is the most delicious CupCake Shop of all times.</p>
                     <p class="lead"> You can see our delicious selection of Bottoms and Toppings under the 'Shop' tab.</p>
-                    <p class="lead"> As soon as you place an order, it will be ready for pick up in our CupCake Shop!</p>
+                    <p class="lead"> As soon as you place an order, it will be ready for pick up in our Cupcake Shop!</p>
                     <br>
                     <p class="lead"> Please log in under the 'Log in' tab in the top.</p>
                     <p class="lead"> If you are still not registered, you can also register under the 'Log in' tab.</p>
