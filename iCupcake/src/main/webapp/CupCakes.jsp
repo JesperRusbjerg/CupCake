@@ -25,7 +25,6 @@
                     <h1 class="display-4">Cupcake page!</h1>
                     <p class="lead">${message}</p>
                     <p class="lead">Each topping is added together and a final price will be shown in your shopping cart.</p>
-                    <img class="regdiv2" src="shoppic.jpg" alt="Cupcake picture">
                     <form action="CartServlet" method="post">
                         <div class="form-group">
                             <label for="selectbottom">Bottoms:</label><br>
