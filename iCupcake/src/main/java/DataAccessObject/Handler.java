@@ -48,11 +48,7 @@ public class Handler {
     }
     
     /**
-<<<<<<< HEAD
      * is described in DAO: {@link DAOCupcake#getAllBottoms() }
-=======
-     * is described in DAO: {@link  DAOCupcake#getAllBottoms() }
->>>>>>> 7ffbc8b18363c16a887753c9d26c3cff4cc98e91
      * @return 
      */
     public List<Bottoms> getAllBottoms(){

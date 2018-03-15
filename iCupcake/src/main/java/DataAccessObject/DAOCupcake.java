@@ -24,8 +24,8 @@ public class DAOCupcake {
     /**
      * Authenticates users email and password input.
      *
-     * @param email
-     * @param password
+     * @param email not null
+     * @param password not null
      * @return User object to be used in session.
      */
     public User loginAuthentication(String email, String password) {
@@ -62,8 +62,8 @@ public class DAOCupcake {
      * Checks users input (email, password). Checks that neither input is an
      * empty string, and that email does not exist already in the database.
      *
-     * @param email
-     * @param password
+     * @param email not null
+     * @param password not null
      * @return true if registerable
      */
     public boolean checkIfRegisterable(String email, String password) {
@@ -94,10 +94,10 @@ public class DAOCupcake {
      * Creates new user in database table 'users'. Writes user values to
      * database.
      *
-     * @param username
-     * @param email
-     * @param password
-     * @param credit
+     * @param username not null
+     * @param email not null
+     * @param password not null
+     * @param credit fixed to 50 for initial creation of user
      * @return true
      */
     public boolean createUser(String username, String email, String password, int credit) {
@@ -207,7 +207,7 @@ public class DAOCupcake {
     /**
      * Deletes a user from the database table 'users'.
      *
-     * @param userID
+     * @param userID always 1 or higher
      */
     public void deleteUser(int userID) {
         try {
@@ -228,7 +228,7 @@ public class DAOCupcake {
      * Reads Bottom object with id, name and price from database table
      * 'bottoms'.
      *
-     * @param bottomsID
+     * @param bottomsID always 1 or higher
      * @return Bottom object with id, name and price.
      */
     public Bottoms findBottom(int bottomsID) {
@@ -256,7 +256,7 @@ public class DAOCupcake {
      * Reads Topping object with id, name and price from database table
      * 'toppings'.
      *
-     * @param toppingsID
+     * @param toppingsID always 1 or higher
      * @return Topping object with id, name and price.
      */
     public Toppings findTopping(int toppingsID) {
@@ -283,16 +283,16 @@ public class DAOCupcake {
     /**
      * Changes credit on user account.
      *
-     * @param u
+     * @param user not null
      * @param credit new creditvalue
      */
-    public void setCreditToUser(User u, int credit) {
+    public void setCreditToUser(User user, int credit) {
         try {
             dbc.open();
             String sql = "update users set u_credit =? where userID =?;";
             PreparedStatement s = dbc.getConnection().prepareStatement(sql);
             s.setInt(1, credit);
-            s.setInt(2, u.getUserID());
+            s.setInt(2, user.getUserID());
             s.executeUpdate();
             s.close();
             dbc.close();
@@ -355,9 +355,9 @@ public class DAOCupcake {
      * Inserts an orderitem to the database. All orderitems are attached to a
      * specific order.
      *
-     * @param orderID alwasys 1 or higher.
-     * @param toppingsID alwasys 1 or higher.
-     * @param bottomsID alwasys 1 or higher.
+     * @param orderID always 1 or higher.
+     * @param toppingsID always 1 or higher.
+     * @param bottomsID always 1 or higher.
      * @param cupcakePrice never supposed to be a negative number.
      * @param quantity always 1 or higher.
      */
@@ -386,8 +386,8 @@ public class DAOCupcake {
      *
      * @param userID given UserID of the UserID in the current session, always 1
      * or higher.
-     * @return returns List of Orders. Can be null. ( If no orders are placed as
-     * of yet )
+     * @return returns List of Orders. Can be null. (If no orders are placed as
+     * of yet)
      */
     public List<Order> showOrdersForUser(int userID) {
         List<Order> userOrders = new ArrayList();
