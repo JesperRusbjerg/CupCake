@@ -47,7 +47,10 @@ public class Handler {
         return dao.createUser(username, email, password, credit);
     }
     
-    
+    /**
+     * is described in DAO: {@link DAOCupcake#getAllBottoms() }
+     * @return 
+     */
     public List<Bottoms> getAllBottoms(){
         return dao.getAllBottoms();
     }
