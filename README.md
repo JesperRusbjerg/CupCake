@@ -1,1 +1,1 @@
-test
+Authors: metterytt, pernillelorup, JesperRusbjerg & RasmusHelsgaun
