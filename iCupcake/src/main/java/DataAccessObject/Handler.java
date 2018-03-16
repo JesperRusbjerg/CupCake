@@ -8,7 +8,12 @@ import Entity.User;
 import MyDataSource.CupcakeDataSource;
 import java.util.List;
 
-
+/**
+ * This is the class representing the storage facade.
+ * It acts as an intermediary between the servlets and the DataAccessObject, which
+ * is described here {@link  DAOCupcake}
+ * @author mette
+ */
 public class Handler {
     
     private DAOCupcake dao = new DAOCupcake(new CupcakeDataSource().getDataSource());

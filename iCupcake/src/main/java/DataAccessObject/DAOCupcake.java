@@ -13,6 +13,13 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * This class is responsible for accessing the database.
+ * There are various methods for retrieving data from the tables in the database, 
+ * for writing new users and orders into the database, and for validating that user 
+ * input matches the table entries (for email and password).
+ * @author snøvsen
+ */
 public class DAOCupcake {
 
     private DBConnector dbc = new DBConnector();
