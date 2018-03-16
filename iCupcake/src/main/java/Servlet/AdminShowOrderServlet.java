@@ -34,7 +34,7 @@ public class AdminShowOrderServlet extends HttpServlet {
         if (checkOrderIDForEditPrice != null) {
             int orderIDforEditPrice = Integer.parseInt(request.getParameter("orderIDforEditPrice"));
             int priceForEdit = Integer.parseInt(request.getParameter("price"));
-             int userID = Integer.parseInt(request.getParameter("userID"));
+            int userID = Integer.parseInt(request.getParameter("userID"));
             User u = handler.getUser(userID);
             request.setAttribute("user", u);
             request.setAttribute("orderIDforEditPrice", orderIDforEditPrice);

@@ -56,7 +56,7 @@
                                         <input type="hidden" name="orderIDforEditPrice" value="<%out.print(elem.getOrderID());%>" >
                                         <input type="hidden" name="price" value="<%out.print(elem.getTotalprice());%>" >
                                         <input type="hidden" name="userID" value="<% out.print(elem.getUserID()); %>" >
-                                        <input type="submit" class="btn btn-success" value="EDIT ORDER">
+                                        <input type="submit" class="btn btn-success" value="Edit Order">
                                     </form>
                                 </th>
                                 <%}%>
@@ -82,7 +82,7 @@
                             <input type="hidden" name="finalOrderID" value="<%out.print(orderID);%>" />
                             <input class="form-control" type="number" name="finalPrice" value="<%out.print(price);%>" />
 
-                            <br> <input class="btn btn-primary" type="submit" value="EDIT ORDER"/>
+                            <br> <input class="btn btn-primary" type="submit" value="Edit Order"/>
                         </form>    
                     </div>
                 </div>  
@@ -97,7 +97,7 @@
                 
                 %>
                 <div class="col-md-6">
-                    <h1 class="display-4">>Order Details: for User: <% out.print(u.getUsername()); %>, ID: <% out.print(u.getUserID()); %> </h1>
+                    <h3 class="display-4">Order Details: <br> User: <% out.print(u.getUsername()); %>, ID: <% out.print(u.getUserID()); %> </h1>
 
                     <table class="table table-striped">
                         <thead>
