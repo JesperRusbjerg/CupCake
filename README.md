@@ -1,5 +1,5 @@
 Authors: metterytt, pernillelorup, JesperRusbjerg & RasmusHelsgaun
 
 Login for admin access to website:
-Username: admin
+User email: admin
 Password: admin
